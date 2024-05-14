@@ -270,6 +270,13 @@
     safe.directory=*
     core.autocrlf=input
     ```
+5. [任意] `Ubuntu 22.04`でGit設定ファイルのシンボリックリンクを作成するため、本リポジトリをクローンした後に下記コマンドを実行する
+    ```shell
+    $ # Git設定ファイルのシンボリックリンクを作成する
+    $ ln -sf <Gitフォルダパス>/dev-env-for-windows/config/Ubuntu/.gitconfig ~/.gitconfig
+    $ # 当該ファイルを一覧表示する
+    $ ll ~/.gitconfig
+    ```
 
 ##### 3.3.3.1. 参考サイト
 
@@ -411,6 +418,13 @@
     alias h='history'
     ```
     - 普段使用している定義は[`.bash_aliases`](./config/Ubuntu/.bash_aliases)で管理している
+4. [任意] `Ubuntu 22.04`でエイリアス定義ファイルのシンボリックリンクを作成するため、本リポジトリをクローンした後に下記コマンドを実行する
+    ```shell
+    $ # エイリアス定義ファイルのシンボリックリンクを作成する
+    $ ln -sf <Gitフォルダパス>/dev-env-for-windows/config/Ubuntu/.bash_aliases ~/.bash_aliases
+    $ # 当該ファイルを一覧表示する
+    $ ll ~/.bash_aliases
+    ```
 
 ### 3.4. Dockerのインストール
 
