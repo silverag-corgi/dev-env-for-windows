@@ -23,6 +23,8 @@
       - [3.3.6.1. 参考サイト](#3361-参考サイト)
     - [3.3.7. \[任意\] コマンド履歴の日時フォーマットの設定](#337-任意-コマンド履歴の日時フォーマットの設定)
     - [3.3.8. \[任意\] エイリアス定義ファイルの作成](#338-任意-エイリアス定義ファイルの作成)
+    - [3.3.9. \[任意\] Chromiumのインストール](#339-任意-chromiumのインストール)
+      - [3.3.6.1. 参考サイト](#3361-参考サイト-1)
   - [3.4. Dockerのインストール](#34-dockerのインストール)
     - [3.4.1. \[DockerCLI版\] Dockerのインストール](#341-dockercli版-dockerのインストール)
       - [3.4.1.1. 参考サイト](#3411-参考サイト)
@@ -386,6 +388,8 @@
 
 #### 3.3.7. [任意] コマンド履歴の日時フォーマットの設定
 
+実施することにより、コマンド履歴に日時を表示できる。
+
 1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
 2. `Ubuntu 22.04`でシェル設定ファイル(インタラクティブシェルが起動する度に読み込まれる方)を開くため、下記コマンドを実行する
     ```shell
@@ -425,6 +429,50 @@
     $ # 当該ファイルを一覧表示する
     $ ll ~/.bash_aliases
     ```
+
+#### 3.3.9. [任意] Chromiumのインストール
+
+実施することにより、Chromiumをインストールでき、`VSCode`の拡張機能である`Markdown PDF`でmdファイルをPDFに変換できる。
+
+1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
+2. `Ubuntu 22.04`で`Chromium`をインストールするため、下記コマンドを実行する
+    ```shell
+    $ # Chromiumパッケージをインストールする
+    $ sudo apt install chromium-browser
+    $ # インストールパスを確認する
+    $ which chromium-browser
+    /usr/bin/chromium-browser
+    ```
+3. `Windows 10`で`VSCode`の設定ファイルを編集するため、下記操作を実施する
+    1. `管理＞設定`(`Ctrl+,`)をクリックする
+    2. `設定 (JSON) を開く`をクリックする
+4. `Windows 10`で`VSCode`の設定ファイルに下記内容を追記する
+    ```json
+    "markdown-pdf.executablePath": "/usr/bin/chromium-browser", // Chromiumのインストールパス
+    ```
+5. `Ubuntu 22.04`でフォント設定ファイル(グローバル版)を作成して編集するため、下記コマンドを実行する
+    ```shell
+    $ # フォント設定ファイル(グローバル版)を作成する
+    $ sudo touch /etc/fonts/local.conf
+    $ # アクセス権限を設定する
+    $ sudo chmod 666 /etc/fonts/local.conf
+    $ # 当該ファイルを開く
+    $ code /etc/fonts/local.conf
+    ```
+6. `Ubuntu 22.04`で日本語フォントの文字化けを回避するため、フォント設定ファイル(グローバル版)に下記内容を追記する
+    ```conf
+    <?xml version="1.0"?>
+    <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+    <fontconfig>
+        <dir>/mnt/c/Windows/Fonts</dir>
+    </fontconfig>
+    ```
+
+##### 3.3.6.1. 参考サイト
+
+1. [markdown-pdf wsl2 export Error: Failed to launch the browser process No such file or directory - Google 検索](https://www.google.com/search?q=markdown-pdf+wsl2+export+Error%3A+Failed+to+launch+the+browser+process+No+such+file+or+directory)
+    1. [Markdown PDFで Error: Failed to launch the browser process! が発生した際の解消方法 #VSCode - Qiita](https://qiita.com/I_s/items/5ba9a19d933598bc7f69)
+    2. [WSL 上で VS Code の Markdown PDF から PDF 出力ができないときの解決方法 | MSeeeeN](https://mseeeen.msen.jp/setup-markdown-pdf-on-wsl-vscode/#日本語フォントのインストール)
 
 ### 3.4. Dockerのインストール
 
