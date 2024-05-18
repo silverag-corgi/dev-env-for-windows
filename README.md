@@ -340,12 +340,12 @@
 実施することにより、英語を読む必要がなくなる。
 
 1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
-2. `Ubuntu 22.04`でロケールを日本語・日本に更新するため、下記コマンドを実行する
+2. `Ubuntu 22.04`で言語を日本語に設定するため、下記コマンドを実行する
     ```shell
     $ # パッケージ一覧を更新し、パッケージをアップグレードする
     $ sudo apt -y update && sudo apt -y upgrade
-    $ # 言語パック(日本語)をインストールする
-    $ sudo apt -y install language-pack-ja
+    $ # 日本語関連パッケージをインストールする
+    $ sudo apt -y install task-japanese
     $ # ロケールを日本語・日本に更新する
     $ sudo update-locale LANG=ja_JP.UTF-8
     ```
@@ -355,7 +355,7 @@
     > wsl --shutdown
     ```
 4. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
-5. `Ubuntu 22.04`でロケールを日本語・日本に更新されているか確認するため、下記コマンドを実行する
+5. `Ubuntu 22.04`でロケールが日本語・日本に更新されているか確認するため、下記コマンドを実行する
     ```shell
     $ # ロケール情報を表示する
     $ locale
@@ -374,11 +374,6 @@
     LC_MEASUREMENT="ja_JP.UTF-8"
     LC_IDENTIFICATION="ja_JP.UTF-8"
     LC_ALL=
-    ```
-6. `Ubuntu 22.04`でマニュアル(日本語)をインストールするため、下記コマンドを実行する
-    ```shell
-    $ # マニュアル(日本語)をインストールする
-    $ sudo apt -y install manpages-ja manpages-ja-dev
     ```
 
 ##### 3.3.6.1. 参考サイト
