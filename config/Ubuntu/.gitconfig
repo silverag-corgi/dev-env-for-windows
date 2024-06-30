@@ -1,35 +1,49 @@
 [user]
-	; Gitアカウント情報
-	name = Rem_
-	email = black.white.red.are.the.best@gmail.com
+    # Gitアカウント情報
+    name = Rem_
+    email = black.white.red.are.the.best@gmail.com
 [credential]
-	; 認証情報を保存する (24時間キャッシュする)
-	helper = cache --timeout=86400
+    # 認証情報を保存する (24時間キャッシュする)
+    helper = cache --timeout=86400
 [safe]
-	; ディレクトリの安全性を保証する (全てのディレクトリ)
-	directory = *
+    # ディレクトリの安全性を保証する (全てのディレクトリ)
+    directory = *
 [core]
-	; 改行コードを自動的に変換する (チェックアウト=>元のまま,コミット=>Linuxの改行コードへの変換)
-	autocrlf = input
-	; `git status`を実行した際に日本語ファイル名をエンコードする (エンコードしない)
-	quotepath = false
-	; `git commit`などを実行した際に指定したエディタを開く
-	editor = code --wait
+    # 改行コードを自動的に変換する (チェックアウト=>元のまま,コミット=>Linuxの改行コードへの変換)
+    autocrlf = input
+    # `git status`を実行した際に日本語ファイル名をエンコードする (エンコードしない)
+    quotepath = false
+    # `git commit`などを実行した際に指定したエディタを開く
+    editor = code --wait
 [pager]
-	; `git branch`を実行した際にページャを使用せずに表示する
-	branch = false
+    # `git branch`を実行した際にページャを使用せずに表示する
+    branch = false
 [commit]
-	; `git commit`を実行した際にテンプレートを表示する
-	template = ~/workspace/Git/git/git-commit-message-template/.git_commit_message_template
+    # `git commit`を実行した際にテンプレートを表示する
+    template = ~/workspace/Git/git/git-commit-message-template/.git_commit_message_template
 [fetch]
-	; `git fetch`を実行した際にリモートで削除されたブランチをローカルでも削除する (削除する)
-	prune = true
+    # `git fetch`を実行した際にリモートで削除されたブランチをローカルでも削除する (削除する)
+    prune = true
 [push]
-	; `git push`を実行した際にブランチを自動的に指定する (現在のブランチを指定する)
-	default = current
+    # `git push`を実行した際にブランチを自動的に指定する (現在のブランチを指定する)
+    default = current
 [rebase]
-	; `git rebase`を実行した際に自動的に`git stash`も実行する (実行する)
-	autostash = true
+    # `git rebase`を実行した際に自動的に`git stash`も実行する (実行する)
+    autostash = true
 [alias]
-	; `git log`を実行した際に整形したログを出力する
-	ll = log -n 10 --graph --date=iso --decorate=short --pretty=format:'[%ad][%cd][%h]%Cgreen[%an]%Cred%d %Creset%s'
+    # エイリアスの一覧を出力する
+    al = "!f() { cat ~/.gitconfig | sed -n '/alias/,$p'; }; f"
+    # ブランチを新規作成して切り替える (ブランチ名やコミットなどを指定する)
+    create = switch --create
+    # 直近のコミットログ10件を整形して出力する (件数を指定できる)
+    ll = log -n 10 --graph --date=iso --decorate=short --pretty=format:'[%ad][%cd][%h]%Cgreen[%an]%Cred%d %Creset%s'
+    # 直前のコミットのコミッター日付や著者日付を現在日時に変更してメッセージを修正する
+    amend = "!f() { git commit --amend --date=\"$(date +'%Y-%m-%d %H:%M:%S %Z')\"; }; f"
+    # 複数のコミットのコミッター日付を著者日付と同期する (コミットを指定する)
+    sync-date = rebase --committer-date-is-author-date
+    # 強制的にプッシュする
+    push-f = push --force-with-lease --force-if-includes
+    # ファイルの変更を無視する (ファイルを指定する)
+    skip = update-index --skip-worktree
+    # 変更を無視するファイルの一覧を出力する
+    ls-skips = ls-files -v | grep ^S
