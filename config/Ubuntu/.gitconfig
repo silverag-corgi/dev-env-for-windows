@@ -31,10 +31,10 @@
     # `git rebase`を実行した際に自動的に`git stash`も実行する (実行する)
     autostash = true
 [alias]
-    # エイリアスの一覧を出力する
-    al = "!f() { cat ~/.gitconfig | sed -n '/alias/,$p'; }; f"
-    # ブランチを新規作成して切り替える (ブランチ名やコミットなどを指定する)
-    create = switch --create
+    # エイリアス一覧を出力する
+    al = "!f() { cat ~/.gitconfig | sed -n '/\\[alias\\]/,/\\[end-alias\\]/p'; }; f"
+    # メモ一覧を出力する
+    memo = "!f() { cat ~/.gitconfig | sed -n '/\\[memo\\]/,/\\[end-memo\\]/p'; }; f"
     # 直近のコミットログ10件を整形して出力する (件数を指定できる)
     ll = log -n 10 --graph --date=iso --decorate=short --pretty=format:'[%ad][%cd][%h]%Cgreen[%an]%Cred%d %Creset%s'
     # 直前のコミットのコミッター日付や著者日付を現在日時に変更してメッセージを修正する
@@ -47,3 +47,14 @@
     skip = update-index --skip-worktree
     # 変更を無視するファイルの一覧を出力する
     ls-skips = ls-files -v | grep ^S
+[end-alias]
+[memo]
+    # リモートを追跡するブランチを別名で作成して切り替える (ローカルブランチ名とリモートブランチ名を指定する)
+    # git checkout -b issues/1 origin/issues/1
+    # リモートを追跡しないブランチを別名で作成して切り替える (ローカルブランチ名とコミットを指定する)
+    # git checkout -b commit/a123456 a123456
+    # リモートを追跡するブランチを同名で作成して切り替える (リモートブランチ名を指定する)
+    # git switch --track origin/issues/1
+    # ブランチから切り離して一時的なブランチを作成して切り替える (コミットを指定する)
+    # git switch --detach a123456
+[end-memo]
