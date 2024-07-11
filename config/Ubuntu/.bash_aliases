@@ -5,7 +5,7 @@ alias sudo='sudo ' # sudo コマンドでエイリアスを使えるように設
 if [ -x /usr/bin/dircolors ]; then
 
 test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-alias ls='ls --color=auto'
+alias ls='ls --color=auto --time-style=+"%Y/%m/%d %H:%M:%S %Z"'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 
@@ -24,7 +24,7 @@ alias c='clear'
 
 alias h='history'
 
-alias date='date +"%Y-%m-%d %H:%M:%S %Z"'
+alias date='date +"%Y/%m/%d %H:%M:%S %Z"'
 
 alias mem='free --mega'
 
