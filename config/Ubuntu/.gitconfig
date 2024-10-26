@@ -42,11 +42,18 @@
     # 複数のコミットのコミッター日付を著者日付と同期する (コミットを指定する)
     sync-date = rebase --committer-date-is-author-date
     # 強制的にプッシュする
-    push-f = push --force-with-lease --force-if-includes
+    push-f = push --force-with-lease
+    # 強制的にプルする
+    pull-f = "!f() { \
+            CURRENT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD) && \
+            CURRENT_REMOTE_NAME=$(git config --get branch.$CURRENT_BRANCH_NAME.remote) && \
+            git fetch $CURRENT_REMOTE_NAME && \
+            git reset --soft $CURRENT_REMOTE_NAME/$CURRENT_BRANCH_NAME; \
+        }; f"
     # ファイルの変更を無視する (ファイルを指定する)
     skip = update-index --skip-worktree
     # 変更を無視するファイルの一覧を出力する
-    ls-skips = ls-files -v | grep ^S
+    ls-skips = "!f() { git ls-files -v | grep ^S; }; f"
 [end-alias]
 [memo]
     # リモートを追跡するブランチを別名で作成して切り替える (ローカルブランチ名とリモートブランチ名を指定する)
