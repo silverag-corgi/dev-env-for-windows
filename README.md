@@ -26,9 +26,9 @@
     - [3.3.9. \[任意\] Chromiumのインストール](#339-任意-chromiumのインストール)
       - [3.3.6.1. 参考サイト](#3361-参考サイト-1)
   - [3.4. Dockerのインストール](#34-dockerのインストール)
-    - [3.4.1. \[DockerCLI版\] Dockerのインストール](#341-dockercli版-dockerのインストール)
+    - [3.4.1. \[DockerEngine版\] Dockerのインストール](#341-dockerengine版-dockerのインストール)
       - [3.4.1.1. 参考サイト](#3411-参考サイト)
-    - [3.4.2. \[DockerCLI版\] Dockerの自動起動の設定](#342-dockercli版-dockerの自動起動の設定)
+    - [3.4.2. \[DockerEngine版\] Dockerの自動起動の設定](#342-dockerengine版-dockerの自動起動の設定)
       - [3.4.2.1. 参考サイト](#3421-参考サイト)
     - [3.4.3. \[DockerDesktop版\] Dockerのインストール](#343-dockerdesktop版-dockerのインストール)
       - [3.4.3.1. 参考サイト](#3431-参考サイト)
@@ -48,10 +48,10 @@
 下記図のように開発環境を構築すると、`VSCode`から拡張機能`Dev Containers`を用いて`Docker`のコンテナにアクセスし、コンテナ内にあるファイルを`VSCode`上で編集できる。
 なお、ファイルはマウントすることによりコンテナ内で永続化できる。
 
-また、`Docker CLI`と`Docker Desktop`のどちらを用いるかで構成図が異なる。
+また、`Docker Engine`と`Docker Desktop`のどちらを用いるかで構成図が異なる。
 
-- DockerCLI版
-  ![](img/構成図/構成図_現行_DockerCLI版.png)
+- DockerEngine版
+  ![](img/構成図/構成図_現行_DockerEngine版.png)
 - DockerDesktop版
   <details>
   <summary>
@@ -106,7 +106,7 @@
 
 上記の構成図通りに開発環境を構築する。
 
-`Docker CLI`を用いた環境の場合はタイトルの先頭に`DockerCLI版`がある手順を実施する。
+`Docker Engine`を用いた環境の場合はタイトルの先頭に`DockerEngine版`がある手順を実施する。
 また、`Docker Desktop`を用いた環境の場合はタイトルの先頭に`DockerDesktop版`がある手順を実施する。
 
 ### 3.1. VSCode(Visual Studio Code)のインストール
@@ -475,7 +475,7 @@
 
 ### 3.4. Dockerのインストール
 
-#### 3.4.1. [DockerCLI版] Dockerのインストール
+#### 3.4.1. [DockerEngine版] Dockerのインストール
 
 1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
 2. `Ubuntu 22.04`でAptリポジトリをセットアップするため、下記コマンドを実行する
@@ -493,10 +493,10 @@
       sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     $ sudo apt -y update
     ```
-3. `Ubuntu 22.04`でDockerパッケージ(`Docker CLI`など)をインストールするため、下記コマンドを実行する
+3. `Ubuntu 22.04`でDockerパッケージをインストールするため、下記コマンドを実行する
     ```shell
     $ # Dockerパッケージをインストールする
-    $ sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    $ sudo apt -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     ```
 4. `Ubuntu 22.04`で`docker`コマンドを一般ユーザで使用できるように設定するため、下記コマンドを実行する
     ```shell
@@ -575,7 +575,7 @@
 3. [Error initializing network controller: error obtaining controller instance: unable to add return rule in DOCKER-ISOLATION-STAGE-1 chain: - Google 検索](https://www.google.com/search?q=Error+initializing+network+controller%3A+error+obtaining+controller+instance%3A+unable+to+add+return+rule+in+DOCKER-ISOLATION-STAGE-1+chain%3A)
     1. [WSL2のUbuntuを22.04にアップグレードしたらdockerが起動できなくなった - Qiita](https://qiita.com/tkc_tsuchiya/items/f7f4d502d8e2728f69c5)
 
-#### 3.4.2. [DockerCLI版] Dockerの自動起動の設定
+#### 3.4.2. [DockerEngine版] Dockerの自動起動の設定
 
 1. `Ubuntu 22.04`でWSL設定ファイル(ディストリビューション版)を編集するため、下記コマンドを実行する
     ```shell
@@ -651,7 +651,7 @@
 
 本環境で頻発するエラーへの解決方法をまとめる。
 
-`Docker CLI`を用いた環境の場合はタイトルの先頭に`DockerCLI版`がある手順を実施する。
+`Docker Engine`を用いた環境の場合はタイトルの先頭に`DockerEngine版`がある手順を実施する。
 また、`Docker Desktop`を用いた環境の場合はタイトルの先頭に`DockerDesktop版`がある手順を実施する。
 
 ### 4.1. [DockerDesktop版] Dockerの起動に失敗する
