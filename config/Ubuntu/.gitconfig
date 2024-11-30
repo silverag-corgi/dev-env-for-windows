@@ -32,14 +32,14 @@
     autostash = true
 [alias]
     # エイリアス一覧を出力する
-    al = "!f() { cat ~/.gitconfig | sed -n '/\\[alias\\]/,/\\[end-alias\\]/p'; }; f"
+    al = "!f() { cat ~/.gitconfig | sed -n '/\\[alias\\]/,/\\[end-alias\\]/p' | grep --color=auto -E '^\\s{4}#\\s.*|$'; }; f"
     # メモ一覧を出力する
-    memo = "!f() { cat ~/.gitconfig | sed -n '/\\[memo\\]/,/\\[end-memo\\]/p'; }; f"
+    memo = "!f() { cat ~/.gitconfig | sed -n '/\\[memo\\]/,/\\[end-memo\\]/p' | grep --color=auto -E '^\\s{4}#\\s.*|$'; }; f"
     # 直近のコミットログ10件を整形して出力する (件数を指定できる)
     ll = log -n 10 --graph --date=iso --decorate=short --pretty=format:'[%ad][%cd][%h]%Cgreen[%an]%Cred%d %Creset%s'
     # 直前のコミットのコミッター日付や著者日付を現在日時に変更してメッセージを修正する
     amend = "!f() { git commit --amend --date=\"$(date +'%Y-%m-%d %H:%M:%S %Z')\"; }; f"
-    # 複数のコミットのコミッター日付を著者日付と同期する (コミットを指定する)
+    # 複数のコミットのコミッター日付を著者日付と同期する (コミットIDを指定する)
     sync-date = rebase --committer-date-is-author-date
     # 強制的にプッシュする
     push-f = push --force-with-lease
@@ -50,6 +50,10 @@
             git fetch $CURRENT_REMOTE_NAME && \
             git reset --soft $CURRENT_REMOTE_NAME/$CURRENT_BRANCH_NAME; \
         }; f"
+    # PRをチェックアウトする (リモート名とPR番号とローカルブランチ名を指定する)
+    checkout-pr = "!f() { git fetch $1 pull/$2/head:$3 && git checkout $3; }; f"
+    # PRのコミットを取得する (リモート名とPR番号を指定する)
+    pull-pr = "!f() { git pull $1 pull/$2/head; }; f"
     # ファイルの変更を無視する (ファイルを指定する)
     skip = update-index --skip-worktree
     # 変更を無視するファイルの一覧を出力する
@@ -57,11 +61,13 @@
 [end-alias]
 [memo]
     # リモートを追跡するブランチを別名で作成して切り替える (ローカルブランチ名とリモートブランチ名を指定する)
-    # git checkout -b issues/1 origin/issues/1
-    # リモートを追跡しないブランチを別名で作成して切り替える (ローカルブランチ名とコミットを指定する)
-    # git checkout -b commit/a123456 a123456
+    ## git checkout -b issues/1 origin/issues/1
+    ## git switch -c issues/1 --track origin/issues/1
+    # リモートを追跡しないブランチを別名で作成して切り替える (ローカルブランチ名とコミットIDを指定する)
+    ## git checkout -b commit/a123456 a123456
+    ## git switch -c commit/a123456 a123456
     # リモートを追跡するブランチを同名で作成して切り替える (リモートブランチ名を指定する)
-    # git switch --track origin/issues/1
-    # ブランチから切り離して一時的なブランチを作成して切り替える (コミットを指定する)
-    # git switch --detach a123456
+    ## git switch --track origin/issues/1
+    # ブランチから切り離して一時的なブランチを作成して切り替える (コミットIDを指定する)
+    ## git switch --detach a123456
 [end-memo]
