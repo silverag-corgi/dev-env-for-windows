@@ -35,20 +35,31 @@
     al = "!f() { cat ~/.gitconfig | sed -n '/\\[alias\\]/,/\\[end-alias\\]/p' | grep --color=auto -E '^\\s{4}#\\s.*|$'; }; f"
     # メモ一覧を出力する
     memo = "!f() { cat ~/.gitconfig | sed -n '/\\[memo\\]/,/\\[end-memo\\]/p' | grep --color=auto -E '^\\s{4}#\\s.*|$'; }; f"
-    # 直近のコミットログ10件を整形して出力する (件数を指定できる)
-    ll = log -n 10 --graph --date=iso --decorate=short --pretty=format:'[%ad][%cd][%h]%Cgreen[%an]%Cred%d %Creset%s'
-    # 直前のコミットのコミッター日付や著者日付を現在日時に変更してメッセージを修正する
-    amend = "!f() { git commit --amend --date=\"$(date +'%Y-%m-%d %H:%M:%S %Z')\"; }; f"
+    # 直近のコミットログ15件を整形して出力する (件数を指定できる)
+    ll = log -n 15 --graph --date=iso --decorate=short --pretty=format:'[%ad][%cd][%h]%Cgreen[%an]%Cred%d %Creset%s'
+    # 直近の操作ログ15件を出力する
+    rl = reflog -n 15 --date=iso
+    # 直前のコミットを変更する (著者日付を維持して、コミッター日付を現在日時に変更する)
+    amend = commit --amend
+    # 直前のコミットを変更する (著者日付やコミッター日付を現在日時に変更する)
+    amend-date = "!f() { git commit --amend --date=\"$(date +'%Y-%m-%d %H:%M:%S %Z')\"; }; f"
     # 複数のコミットのコミッター日付を著者日付と同期する (コミットIDを指定する)
     sync-date = rebase --committer-date-is-author-date
     # 強制的にプッシュする
     push-f = push --force-with-lease
-    # 強制的にプルする
+    # 強制的にプルする(softリセット)
     pull-f = "!f() { \
             CURRENT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD) && \
             CURRENT_REMOTE_NAME=$(git config --get branch.$CURRENT_BRANCH_NAME.remote) && \
             git fetch $CURRENT_REMOTE_NAME && \
             git reset --soft $CURRENT_REMOTE_NAME/$CURRENT_BRANCH_NAME; \
+        }; f"
+    # 強制的にプルする(hardリセット)
+    pull-f-hard = "!f() { \
+            CURRENT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD) && \
+            CURRENT_REMOTE_NAME=$(git config --get branch.$CURRENT_BRANCH_NAME.remote) && \
+            git fetch $CURRENT_REMOTE_NAME && \
+            git reset --hard $CURRENT_REMOTE_NAME/$CURRENT_BRANCH_NAME; \
         }; f"
     # PRをチェックアウトする (リモート名とPR番号とローカルブランチ名を指定する)
     checkout-pr = "!f() { git fetch $1 pull/$2/head:$3 && git checkout $3; }; f"
