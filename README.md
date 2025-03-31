@@ -9,29 +9,29 @@
     - [3.1.1. 参考サイト](#311-参考サイト)
   - [3.2. WSL2(Windows Subsystem for Linux 2)の有効化](#32-wsl2windows-subsystem-for-linux-2の有効化)
     - [3.2.1. 参考サイト](#321-参考サイト)
-  - [3.3. Ubuntu(Ubuntu 22.04 on WSL2)のインストール](#33-ubuntuubuntu-2204-on-wsl2のインストール)
-    - [3.3.1. Ubuntuのインストール](#331-ubuntuのインストール)
-      - [3.3.1.1. 参考サイト](#3311-参考サイト)
-    - [3.3.2. DNSサーバーの設定](#332-dnsサーバーの設定)
-      - [3.3.2.1. 参考サイト](#3321-参考サイト)
-    - [3.3.3. Gitの設定](#333-gitの設定)
-      - [3.3.3.1. 参考サイト](#3331-参考サイト)
-    - [3.3.4. Gitリポジトリのクローン](#334-gitリポジトリのクローン)
-    - [3.3.5. \[任意\] WSL2のメモリサイズの設定](#335-任意-wsl2のメモリサイズの設定)
-      - [3.3.5.1. 参考サイト](#3351-参考サイト)
-    - [3.3.6. \[任意\] 日本語化](#336-任意-日本語化)
-      - [3.3.6.1. 参考サイト](#3361-参考サイト)
-    - [3.3.7. \[任意\] インタラクティブシェル設定ファイルへの設定の追加](#337-任意-インタラクティブシェル設定ファイルへの設定の追加)
-    - [3.3.8. \[任意\] エイリアス定義ファイルの作成](#338-任意-エイリアス定義ファイルの作成)
-    - [3.3.9. \[任意\] Chromiumのインストール](#339-任意-chromiumのインストール)
-      - [3.3.6.1. 参考サイト](#3361-参考サイト-1)
-  - [3.4. Dockerのインストール](#34-dockerのインストール)
-    - [3.4.1. \[DockerEngine版\] Dockerのインストール](#341-dockerengine版-dockerのインストール)
+  - [3.3. WSL2(Windows Subsystem for Linux 2)の設定](#33-wsl2windows-subsystem-for-linux-2の設定)
+    - [3.3.1. 参考サイト](#331-参考サイト)
+  - [3.4. Ubuntu(Ubuntu 22.04 on WSL2)のインストール](#34-ubuntuubuntu-2204-on-wsl2のインストール)
+    - [3.4.1. Ubuntuのインストール](#341-ubuntuのインストール)
       - [3.4.1.1. 参考サイト](#3411-参考サイト)
-    - [3.4.2. \[DockerEngine版\] Dockerの自動起動の設定](#342-dockerengine版-dockerの自動起動の設定)
+    - [3.4.2. DNSサーバーの設定](#342-dnsサーバーの設定)
       - [3.4.2.1. 参考サイト](#3421-参考サイト)
-    - [3.4.3. \[DockerDesktop版\] Dockerのインストール](#343-dockerdesktop版-dockerのインストール)
+    - [3.4.3. Gitの設定](#343-gitの設定)
       - [3.4.3.1. 参考サイト](#3431-参考サイト)
+    - [3.4.4. Gitリポジトリのクローン](#344-gitリポジトリのクローン)
+    - [3.4.5. \[任意\] 日本語化](#345-任意-日本語化)
+      - [3.4.5.1. 参考サイト](#3451-参考サイト)
+    - [3.4.6. \[任意\] インタラクティブシェル設定ファイルへの設定の追加](#346-任意-インタラクティブシェル設定ファイルへの設定の追加)
+    - [3.4.7. \[任意\] エイリアス定義ファイルの作成](#347-任意-エイリアス定義ファイルの作成)
+    - [3.4.8. \[任意\] Chromiumのインストール](#348-任意-chromiumのインストール)
+      - [3.4.8.1. 参考サイト](#3481-参考サイト)
+  - [3.5. Dockerのインストール](#35-dockerのインストール)
+    - [3.5.1. \[DockerEngine版\] Dockerのインストール](#351-dockerengine版-dockerのインストール)
+      - [3.5.1.1. 参考サイト](#3511-参考サイト)
+    - [3.5.2. \[DockerEngine版\] Dockerの自動起動の設定](#352-dockerengine版-dockerの自動起動の設定)
+      - [3.5.2.1. 参考サイト](#3521-参考サイト)
+    - [3.5.3. \[DockerDesktop版\] Dockerのインストール](#353-dockerdesktop版-dockerのインストール)
+      - [3.5.3.1. 参考サイト](#3531-参考サイト)
 - [4. トラブルシューティング](#4-トラブルシューティング)
   - [4.1. \[DockerDesktop版\] Dockerの起動に失敗する](#41-dockerdesktop版-dockerの起動に失敗する)
     - [4.1.1. エラーログ](#411-エラーログ)
@@ -144,9 +144,39 @@
 1. [wsl2 ubuntu インストール - Google 検索](https://www.google.com/search?q=wsl2+ubuntu+インストール)
     1. [WindowsにWSL2をインストールしてLinux（Ubuntu）環境を構築する | 株式会社ピース｜PEACE Inc.](https://www.4peace.co.jp/blog_tech/569/)
 
-### 3.3. Ubuntu(Ubuntu 22.04 on WSL2)のインストール
+### 3.3. WSL2(Windows Subsystem for Linux 2)の設定
 
-#### 3.3.1. Ubuntuのインストール
+1. `Windows 10`で`コマンドプロンプト`を起動する
+2. `Windows 10`でWSL設定ファイル(グローバル版)を作成するため、下記コマンドを実行する
+    ```shell
+    > # WSL設定ファイル(グローバル版)を作成する
+    > type nul > %USERPROFILE%\.wslconfig
+    > # 当該ファイルを開く
+    > notepad %USERPROFILE%\.wslconfig
+    ```
+3. `Windows 10`でWSL設定ファイル(グローバル版)に下記内容を追記する
+    ```conf
+    [wsl2]
+    memory=6GB
+    swap=2GB
+    networkingMode=mirrored
+    ```
+4. `Windows 10`で`WSL`を再起動するため、下記コマンドを`PowerShell`で実行する
+    ```shell
+    > # WSLを再起動する
+    > wsl --shutdown
+    ```
+
+#### 3.3.1. 参考サイト
+
+1. [wsl2 メモリ 消費 改善 - Google 検索](https://www.google.com/search?q=wsl2+メモリ+消費+改善)
+    1. [WSL2によるホストのメモリ枯渇を防ぐための暫定対処 - Qiita](https://qiita.com/yoichiwo7/items/e3e13b6fe2f32c4c6120)
+2. [wsl2 networkingMode=mirrored 概要 - Google 検索](https://www.google.com/search?q=wsl2+networkingMode%3Dmirrored+%E6%A6%82%E8%A6%81)
+    1. [WSLのミラーモードを使おう！](https://zenn.dev/roymccrain/articles/5d22f968088312)
+
+### 3.4. Ubuntu(Ubuntu 22.04 on WSL2)のインストール
+
+#### 3.4.1. Ubuntuのインストール
 
 1. `Windows 10`で下記リンクから`Ubuntu 22.04`をインストールする
     - [Ubuntu 22.04 - Microsoft Store](https://apps.microsoft.com/store/detail/ubuntu-22042-lts/9PN20MSR04DW)
@@ -171,14 +201,14 @@
 5. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
     - 画面左下に`WSL2: Ubuntu-22.04`と表示されること
 
-##### 3.3.1.1. 参考サイト
+##### 3.4.1.1. 参考サイト
 
 1. [wsl2 ubuntu インストール - Google 検索](https://www.google.com/search?q=wsl2+ubuntu+インストール)
     1. [WindowsにWSL2をインストールしてLinux（Ubuntu）環境を構築する | 株式会社ピース｜PEACE Inc.](https://www.4peace.co.jp/blog_tech/569/)
 2. [wsl 変換 - Google 検索](https://www.google.com/search?q=wsl+変換)
     1. [WSLを２に更新する - Qiita](https://qiita.com/nanaki11/items/a12a76c00e210ac45b98)
 
-#### 3.3.2. DNSサーバーの設定
+#### 3.4.2. DNSサーバーの設定
 
 1. `Windows 10`でネットワーク設定情報を表示するため、下記コマンドを`PowerShell`で実行する
     ```shell
@@ -230,12 +260,12 @@
     > wsl --shutdown
     ```
 
-##### 3.3.2.1. 参考サイト
+##### 3.4.2.1. 参考サイト
 
 1. [wsl2 ubuntu dns - Google 検索](https://www.google.com/search?q=wsl2+ubuntu+dns)
     1. [WSL2 で dns の名前解決ができなくなってネット接続できなくなった場合の対処方法 - Qiita](https://qiita.com/kkato233/items/1fc71bde5a6d94f1b982)
 
-#### 3.3.3. Gitの設定
+#### 3.4.3. Gitの設定
 
 1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
 2. `Ubuntu 22.04`でGit設定ファイルを作成して編集するため、下記コマンドを実行する
@@ -271,7 +301,7 @@
     $ ll ~/.gitconfig
     ```
 
-##### 3.3.3.1. 参考サイト
+##### 3.4.3.1. 参考サイト
 
 1. [.gitconfig おすすめ - Google 検索](https://www.google.com/search?q=.gitconfig+おすすめ)
     1. [Gitを使い始めたら一番最初にやりたい `git config`設定メモ](https://blog.katsubemakito.net/git/git-config-1st)
@@ -280,7 +310,7 @@
 3. [git autocrlf - Google 検索](https://www.google.com/search?q=git+autocrlf)
     1. [Git の自動改行コード変換 AutoCrlf ってどんな機能なの？ - ultra code](https://futureys.tokyo/what-is-autocrlf-of-git/)
 
-#### 3.3.4. Gitリポジトリのクローン
+#### 3.4.4. Gitリポジトリのクローン
 
 1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
 2. `Ubuntu 22.04`でGitフォルダを作成するため、下記コマンドを実行する
@@ -296,37 +326,7 @@
     $ git clone <リモートリポジトリのURL>
     ```
 
-#### 3.3.5. [任意] WSL2のメモリサイズの設定
-
-実施することにより、`Windows 10`のメモリ枯渇を防ぐ。
-原因や発生する状況などは参考サイト`1.1.`を参照する。
-
-1. `Windows 10`で`コマンドプロンプト`を起動する
-2. `Windows 10`でWSL設定ファイル(グローバル版)を作成するため、下記コマンドを実行する
-    ```shell
-    > # WSL設定ファイル(グローバル版)を作成する
-    > type nul > %USERPROFILE%\.wslconfig
-    > # 当該ファイルを開く
-    > notepad %USERPROFILE%\.wslconfig
-    ```
-3. `Windows 10`でWSL設定ファイル(グローバル版)に下記内容を追記する
-    ```conf
-    [wsl2]
-    memory=6GB
-    swap=2GB
-    ```
-4. `Windows 10`で`WSL`を再起動するため、下記コマンドを`PowerShell`で実行する
-    ```shell
-    > # WSLを再起動する
-    > wsl --shutdown
-    ```
-
-##### 3.3.5.1. 参考サイト
-
-1. [wsl2 メモリ 消費 改善 - Google 検索](https://www.google.com/search?q=wsl2+メモリ+消費+改善)
-    1. [WSL2によるホストのメモリ枯渇を防ぐための暫定対処 - Qiita](https://qiita.com/yoichiwo7/items/e3e13b6fe2f32c4c6120)
-
-#### 3.3.6. [任意] 日本語化
+#### 3.4.5. [任意] 日本語化
 
 実施することにより、英語を読む必要がなくなる。
 
@@ -367,12 +367,12 @@
     LC_ALL=
     ```
 
-##### 3.3.6.1. 参考サイト
+##### 3.4.5.1. 参考サイト
 
 1. [ubuntu wsl2 日本語化 - Google 検索](https://www.google.com/search?q=ubuntu+wsl2+日本語化)
     1. [WSL2のUbuntu 20.04を日本語化する - Qiita](https://qiita.com/myalpine/items/fb45b222924b2e61ea9f)
 
-#### 3.3.7. [任意] インタラクティブシェル設定ファイルへの設定の追加
+#### 3.4.6. [任意] インタラクティブシェル設定ファイルへの設定の追加
 
 実施することにより、インタラクティブシェルを起動する時に実行されるコマンドを追加できる。
 
@@ -401,7 +401,7 @@
     $ ll ~/.bashrc
     ```
 
-#### 3.3.8. [任意] エイリアス定義ファイルの作成
+#### 3.4.7. [任意] エイリアス定義ファイルの作成
 
 実施することにより、コマンドのエイリアス(ショートカット)を作成できる。
 
@@ -429,7 +429,7 @@
     $ ll ~/.bash_aliases
     ```
 
-#### 3.3.9. [任意] Chromiumのインストール
+#### 3.4.8. [任意] Chromiumのインストール
 
 実施することにより、Chromiumをインストールでき、`VSCode`の拡張機能である`Markdown PDF`でmdファイルをPDFに変換できる。
 
@@ -467,15 +467,15 @@
     </fontconfig>
     ```
 
-##### 3.3.6.1. 参考サイト
+##### 3.4.8.1. 参考サイト
 
 1. [markdown-pdf wsl2 export Error: Failed to launch the browser process No such file or directory - Google 検索](https://www.google.com/search?q=markdown-pdf+wsl2+export+Error%3A+Failed+to+launch+the+browser+process+No+such+file+or+directory)
     1. [Markdown PDFで Error: Failed to launch the browser process! が発生した際の解消方法 #VSCode - Qiita](https://qiita.com/I_s/items/5ba9a19d933598bc7f69)
     2. [WSL 上で VS Code の Markdown PDF から PDF 出力ができないときの解決方法 | MSeeeeN](https://mseeeen.msen.jp/setup-markdown-pdf-on-wsl-vscode/#日本語フォントのインストール)
 
-### 3.4. Dockerのインストール
+### 3.5. Dockerのインストール
 
-#### 3.4.1. [DockerEngine版] Dockerのインストール
+#### 3.5.1. [DockerEngine版] Dockerのインストール
 
 1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
 2. `Ubuntu 22.04`でAptリポジトリをセットアップするため、下記コマンドを実行する
@@ -565,7 +565,7 @@
     Hello from Docker!
     ```
 
-##### 3.4.1.1. 参考サイト
+##### 3.5.1.1. 参考サイト
 
 1. [docker cli ubuntu - Google 検索](https://www.google.com/search?q=docker+cli+ubuntu)
     1. [Install Docker Engine on Ubuntu | Docker Docs](https://docs.docker.com/engine/install/ubuntu/)
@@ -575,7 +575,7 @@
 3. [Error initializing network controller: error obtaining controller instance: unable to add return rule in DOCKER-ISOLATION-STAGE-1 chain: - Google 検索](https://www.google.com/search?q=Error+initializing+network+controller%3A+error+obtaining+controller+instance%3A+unable+to+add+return+rule+in+DOCKER-ISOLATION-STAGE-1+chain%3A)
     1. [WSL2のUbuntuを22.04にアップグレードしたらdockerが起動できなくなった - Qiita](https://qiita.com/tkc_tsuchiya/items/f7f4d502d8e2728f69c5)
 
-#### 3.4.2. [DockerEngine版] Dockerの自動起動の設定
+#### 3.5.2. [DockerEngine版] Dockerの自動起動の設定
 
 1. `Ubuntu 22.04`でWSL設定ファイル(ディストリビューション版)を編集するため、下記コマンドを実行する
     ```shell
@@ -626,12 +626,12 @@
     Hello from Docker!
     ```
 
-##### 3.4.2.1. 参考サイト
+##### 3.5.2.1. 参考サイト
 
 1. [wsl2 systemd docker - Google 検索](https://www.google.com/search?q=wsl2+systemd+docker)
     1. [WSL2起動時にdockerなどのサービスを同時に起動する(systemd利用) - Qiita](https://qiita.com/junkor-1011/items/60f92800e9a80e3f70da)
 
-#### 3.4.3. [DockerDesktop版] Dockerのインストール
+#### 3.5.3. [DockerDesktop版] Dockerのインストール
 
 1. `Windows 10`で下記リンクからWindows版の`Docker Desktop`をダウンロードし、インストールする
     - [Get Started with Docker](https://www.docker.com/get-started/)
@@ -642,7 +642,7 @@
     - `Settings => Resources => WSL Integration => Enable integration with my default WSL distro`
     - `Settings => Resources => WSL Integration => Ubuntu-22.04`
 
-##### 3.4.3.1. 参考サイト
+##### 3.5.3.1. 参考サイト
 
 1. [devcontainer wsl2 - Google 検索](https://www.google.com/search?q=devcontainer+wsl2)
     1. [WSL2 + VSCode DevContainerでFilesharingの警告 - Qiita](https://qiita.com/noonworks/items/5d49e019e794dbabe92a)
