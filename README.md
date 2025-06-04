@@ -1,5 +1,7 @@
 # dev-env-for-windows <!-- omit in toc -->
 
+## 目次 <!-- omit in toc -->
+
 - [1. 概要](#1-概要)
 - [2. 構成図](#2-構成図)
   - [2.1. \[補足事項\] なぜWindowsから敢えてUbuntuを経由してコンテナを起動する構成にしているのか](#21-補足事項-なぜwindowsから敢えてubuntuを経由してコンテナを起動する構成にしているのか)
@@ -23,8 +25,9 @@
       - [3.4.5.1. 参考サイト](#3451-参考サイト)
     - [3.4.6. \[任意\] インタラクティブシェル設定ファイルへの設定の追加](#346-任意-インタラクティブシェル設定ファイルへの設定の追加)
     - [3.4.7. \[任意\] エイリアス定義ファイルの作成](#347-任意-エイリアス定義ファイルの作成)
-    - [3.4.8. \[任意\] Chromiumのインストール](#348-任意-chromiumのインストール)
-      - [3.4.8.1. 参考サイト](#3481-参考サイト)
+    - [3.4.8. \[任意\] VSCodeのユーザ設定の同期](#348-任意-vscodeのユーザ設定の同期)
+    - [3.4.9. \[任意\] Chromiumのインストール](#349-任意-chromiumのインストール)
+      - [3.4.9.1. 参考サイト](#3491-参考サイト)
   - [3.5. Dockerのインストール](#35-dockerのインストール)
     - [3.5.1. \[DockerEngine版\] Dockerのインストール](#351-dockerengine版-dockerのインストール)
       - [3.5.1.1. 参考サイト](#3511-参考サイト)
@@ -429,7 +432,31 @@
     $ ll ~/.bash_aliases
     ```
 
-#### 3.4.8. [任意] Chromiumのインストール
+#### 3.4.8. [任意] VSCodeのユーザ設定の同期
+
+実施することにより、`VSCode`の拡張機能である`Sync Settings`でユーザ設定を反映できる。
+
+1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
+2. `Windows 10`で`VSCode`のユーザ設定に関する同期元を設定するため、下記操作を実施する
+    1. `管理＞コマンド パレット`をクリックする(`Ctrl+Shift+P`)
+    2. `Sync Settings: Open the repository settings`を入力してEnterを押下する
+3. `Windows 10`で`VSCode`で当該拡張機能の設定ファイルに下記内容を参考に追記する
+    ```yml
+    # selected profile, required
+    profile: main
+
+    # sync on local file system
+    repository:
+      type: file
+      # path of the local directory to sync with, required
+      path: 'Z:/home/silverag/workspace/Git/config/vscode-settings'
+    ```
+    - 普段使用している設定は[`settings.yml`](./config/Windows/settings.yml)で管理している
+4. `Windows 10`で`VSCode`のユーザ設定をダウンロードするため、下記操作を実施する
+    1. `管理＞コマンド パレット`をクリックする(`Ctrl+Shift+P`)
+    2. `Sync Settings: Download (repository -> user)`を入力してEnterを押下する
+
+#### 3.4.9. [任意] Chromiumのインストール
 
 実施することにより、Chromiumをインストールでき、`VSCode`の拡張機能である`Markdown PDF`でmdファイルをPDFに変換できる。
 
@@ -443,7 +470,7 @@
     /usr/bin/chromium-browser
     ```
 3. `Windows 10`で`VSCode`の設定ファイルを編集するため、下記操作を実施する
-    1. `管理＞設定`(`Ctrl+,`)をクリックする
+    1. `管理＞設定`をクリックする(`Ctrl+,`)
     2. `設定 (JSON) を開く`をクリックする
 4. `Windows 10`で`VSCode`の設定ファイルに下記内容を追記する
     ```json
@@ -467,7 +494,7 @@
     </fontconfig>
     ```
 
-##### 3.4.8.1. 参考サイト
+##### 3.4.9.1. 参考サイト
 
 1. [markdown-pdf wsl2 export Error: Failed to launch the browser process No such file or directory - Google 検索](https://www.google.com/search?q=markdown-pdf+wsl2+export+Error%3A+Failed+to+launch+the+browser+process+No+such+file+or+directory)
     1. [Markdown PDFで Error: Failed to launch the browser process! が発生した際の解消方法 #VSCode - Qiita](https://qiita.com/I_s/items/5ba9a19d933598bc7f69)
