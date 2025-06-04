@@ -1,0 +1,19 @@
+# https://marketplace.visualstudio.com/items/?itemName=zokugun.sync-settings
+# https://github.com/zokugun/vscode-sync-settings?tab=readme-ov-file#configuration
+
+# selected profile, required
+profile: main
+
+# sync on local file system
+repository:
+  type: file
+  # path of the local directory to sync with, required
+  path: 'Z:/home/silverag/workspace/Git/config/vscode-settings'
+
+# # sync on local git
+# repository:
+#   type: git
+#   # path of the local git repository to sync with, required
+#   path: 'Z:/home/silverag/workspace/Git/config/vscode-settings'
+#   # branch to sync on, optional (set to `master` by default)
+#   branch: main
