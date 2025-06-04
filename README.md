@@ -18,16 +18,19 @@
       - [3.4.1.1. 参考サイト](#3411-参考サイト)
     - [3.4.2. DNSサーバーの設定](#342-dnsサーバーの設定)
       - [3.4.2.1. 参考サイト](#3421-参考サイト)
-    - [3.4.3. Gitの設定](#343-gitの設定)
-      - [3.4.3.1. 参考サイト](#3431-参考サイト)
-    - [3.4.4. Gitリポジトリのクローン](#344-gitリポジトリのクローン)
-    - [3.4.5. \[任意\] 日本語化](#345-任意-日本語化)
+    - [3.4.3. Gitフォルダ(私用・仕事用)の作成](#343-gitフォルダ私用仕事用の作成)
+    - [3.4.4. Gitの設定(私用)](#344-gitの設定私用)
+    - [3.4.5. \[任意\] Gitの設定(仕事用)](#345-任意-gitの設定仕事用)
       - [3.4.5.1. 参考サイト](#3451-参考サイト)
-    - [3.4.6. \[任意\] インタラクティブシェル設定ファイルへの設定の追加](#346-任意-インタラクティブシェル設定ファイルへの設定の追加)
-    - [3.4.7. \[任意\] エイリアス定義ファイルの作成](#347-任意-エイリアス定義ファイルの作成)
-    - [3.4.8. \[任意\] VSCodeのユーザ設定の同期](#348-任意-vscodeのユーザ設定の同期)
-    - [3.4.9. \[任意\] Chromiumのインストール](#349-任意-chromiumのインストール)
-      - [3.4.9.1. 参考サイト](#3491-参考サイト)
+    - [3.4.6. Gitリポジトリのクローン](#346-gitリポジトリのクローン)
+      - [3.4.6.1. 参考: カテゴリフォルダの作成とGitリポジトリのクローンに関するコマンド](#3461-参考-カテゴリフォルダの作成とgitリポジトリのクローンに関するコマンド)
+    - [3.4.7. \[任意\] 日本語化](#347-任意-日本語化)
+      - [3.4.7.1. 参考サイト](#3471-参考サイト)
+    - [3.4.8. \[任意\] インタラクティブシェル設定ファイルへの設定の追加](#348-任意-インタラクティブシェル設定ファイルへの設定の追加)
+    - [3.4.9. \[任意\] エイリアス定義ファイルの作成](#349-任意-エイリアス定義ファイルの作成)
+    - [3.4.10. \[任意\] VSCodeのユーザ設定の同期](#3410-任意-vscodeのユーザ設定の同期)
+    - [3.4.11. \[任意\] Chromiumのインストール](#3411-任意-chromiumのインストール)
+      - [3.4.11.1. 参考サイト](#34111-参考サイト)
   - [3.5. Dockerのインストール](#35-dockerのインストール)
     - [3.5.1. \[DockerEngine版\] Dockerのインストール](#351-dockerengine版-dockerのインストール)
       - [3.5.1.1. 参考サイト](#3511-参考サイト)
@@ -268,7 +271,21 @@
 1. [wsl2 ubuntu dns - Google 検索](https://www.google.com/search?q=wsl2+ubuntu+dns)
     1. [WSL2 で dns の名前解決ができなくなってネット接続できなくなった場合の対処方法 - Qiita](https://qiita.com/kkato233/items/1fc71bde5a6d94f1b982)
 
-#### 3.4.3. Gitの設定
+#### 3.4.3. Gitフォルダ(私用・仕事用)の作成
+
+1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
+2. `Ubuntu 22.04`でGitフォルダ(私用・仕事用)を作成するため、下記コマンドを実行する
+    ```shell
+    $ # Gitフォルダを作成する
+    $ # - Gitフォルダ(私用) (例: ~/workspace/Git/private)
+    $ # - Gitフォルダ(仕事用) (例: ~/workspace/Git/business)
+    $ mkdir -p <Gitフォルダ(私用)>
+    $ mkdir -p <Gitフォルダ(仕事用)>
+    ```
+    - 基本的には私用Gitフォルダを使用する
+    - 仕事関連のリポジトリをクローンする場合は仕事用Gitフォルダを使用する
+
+#### 3.4.4. Gitの設定(私用)
 
 1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
 2. `Ubuntu 22.04`でGit設定ファイルを作成して編集するため、下記コマンドを実行する
@@ -281,17 +298,17 @@
 3. `Ubuntu 22.04`でGit設定ファイルに下記内容を参考に追記する
     ```conf
     [user]
-        ; Gitアカウント情報
+        # Gitアカウント情報
         name = <ユーザ名>
         email = <メールアドレス>
     [credential]
-        ; 認証情報を保存する (24時間キャッシュする)
+        # 認証情報を保存する (24時間キャッシュする)
         helper = cache --timeout=86400
     [safe]
-        ; ディレクトリの安全性を保証する (全てのディレクトリ)
+        # ディレクトリの安全性を保証する (全てのディレクトリ)
         directory = *
     [core]
-        ; 改行コードを自動的に変換する (チェックアウト=>元のまま,コミット=>Linuxの改行コードへの変換)
+        # 改行コードを自動的に変換する (チェックアウト=>元のまま,コミット=>Linuxの改行コードへの変換)
         autocrlf = input
     ```
     - 普段使用している設定は[`.gitconfig`](./config/Ubuntu/.gitconfig)で管理している
@@ -299,12 +316,33 @@
 4. [任意] `Ubuntu 22.04`でGit設定ファイルのシンボリックリンクを作成するため、本リポジトリをクローンした後に下記コマンドを実行する
     ```shell
     $ # Git設定ファイルのシンボリックリンクを作成する
-    $ ln -sf <Gitフォルダパス>/dev-env-for-windows/config/Ubuntu/.gitconfig ~/.gitconfig
+    $ ln -sf <Gitフォルダパス>/config/dev-env-for-windows/config/Ubuntu/.gitconfig ~/.gitconfig
     $ # 当該ファイルを一覧表示する
     $ ll ~/.gitconfig
     ```
 
-##### 3.4.3.1. 参考サイト
+#### 3.4.5. [任意] Gitの設定(仕事用)
+
+実施することにより、仕事用フォルダ配下でGit設定ファイル(仕事用)に切り替えることができる。
+
+1. `Ubuntu 22.04`でGit設定ファイル(仕事用)を作成して編集するため、下記コマンドを実行する
+    ```shell
+    $ # Git設定ファイル(仕事用)を作成する
+    $ cp .gitconfig-business.sample .gitconfig-business
+    $ # 当該ファイルを一覧表示する
+    $ ll .gitconfig-business
+    $ # 当該ファイルを開く
+    $ code .gitconfig-business
+    ```
+2. `Ubuntu 22.04`でGit設定ファイル(仕事用)に下記内容を参考に追記する
+    ```conf
+    [user]
+        # Gitアカウント情報
+        name = <ユーザ名>
+        email = <メールアドレス>
+    ```
+
+##### 3.4.5.1. 参考サイト
 
 1. [.gitconfig おすすめ - Google 検索](https://www.google.com/search?q=.gitconfig+おすすめ)
     1. [Gitを使い始めたら一番最初にやりたい `git config`設定メモ](https://blog.katsubemakito.net/git/git-config-1st)
@@ -313,15 +351,10 @@
 3. [git autocrlf - Google 検索](https://www.google.com/search?q=git+autocrlf)
     1. [Git の自動改行コード変換 AutoCrlf ってどんな機能なの？ - ultra code](https://futureys.tokyo/what-is-autocrlf-of-git/)
 
-#### 3.4.4. Gitリポジトリのクローン
+#### 3.4.6. Gitリポジトリのクローン
 
 1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
-2. `Ubuntu 22.04`でGitフォルダを作成するため、下記コマンドを実行する
-    ```shell
-    $ # Gitフォルダ(例：~/workspace/Git/)を作成する
-    $ mkdir -p <Gitフォルダパス>
-    ```
-3. `Ubuntu 22.04`で必用なリポジトリをクローンするため、下記コマンドを実行する
+2. `Ubuntu 22.04`で必用なリポジトリをクローンするため、下記コマンドを実行する
     ```shell
     $ # Gitフォルダに移動する
     $ cd <Gitフォルダパス>
@@ -329,7 +362,66 @@
     $ git clone <リモートリポジトリのURL>
     ```
 
-#### 3.4.5. [任意] 日本語化
+##### 3.4.6.1. 参考: カテゴリフォルダの作成とGitリポジトリのクローンに関するコマンド
+
+<details>
+<summary>詳細</summary>
+
+1. config
+    ```shell
+    $ mkdir -p ~/workspace/Git/private/config/
+    $ cd ~/workspace/Git/private/config/
+    $ git clone https://github.com/silverag-corgi/dev-env-for-windows.git
+    $ git clone https://github.com/silverag-corgi/vscode-settings.git
+    ```
+2. doc
+    ```shell
+    $ mkdir -p ~/workspace/Git/private/doc/
+    $ cd ~/workspace/Git/private/doc/
+    $ git clone https://github.com/silverag-corgi/curriculum-vitae.git
+    $ git clone https://github.com/silverag-corgi/github-markdown-css.git
+    $ git clone https://github.com/silverag-corgi/marp-theme-for-me.git
+    $ git clone https://github.com/silverag-corgi/memo.git
+    $ git clone https://github.com/silverag-corgi/memo-python.git
+    ```
+3. git
+    ```shell
+    $ mkdir -p ~/workspace/Git/private/git
+    $ cd ~/workspace/Git/private/git
+    $ git clone https://github.com/silverag-corgi/git-commit-message-template.git
+    $ git clone https://github.com/silverag-corgi/git.git
+    ```
+4. github
+    ```shell
+    $ mkdir -p ~/workspace/Git/private/github/
+    $ cd ~/workspace/Git/private/github/
+    $ git clone https://github.com/silverag-corgi/.github.git
+    $ git clone https://github.com/silverag-corgi/silverag-corgi.git
+    $ git clone https://github.com/silverag-corgi/twitter-profile.git
+    ```
+5. jekyll
+    ```shell
+    $ mkdir -p ~/workspace/Git/private/jekyll/
+    $ cd ~/workspace/Git/private/jekyll/
+    $ git clone https://github.com/silverag-corgi/blog.git
+    $ git clone https://github.com/silverag-corgi/dev-container-jekyll.git
+    ```
+6. python
+    ```shell
+    $ mkdir -p ~/workspace/Git/private/python/
+    $ cd ~/workspace/Git/private/python/
+    $ git clone https://github.com/silverag-corgi/commitizen-cz-custom-commits.git
+    $ git clone https://github.com/silverag-corgi/dev-container-python.git
+    $ git clone https://github.com/silverag-corgi/fgo-farm-report-collection.git
+    $ git clone https://github.com/silverag-corgi/python-lib-for-me.git
+    $ git clone https://github.com/silverag-corgi/python-loc.git
+    $ git clone https://github.com/silverag-corgi/twitter-app.git
+    $ git clone https://github.com/silverag-corgi/twitter-app-auth-info.git
+    ```
+
+</details>
+
+#### 3.4.7. [任意] 日本語化
 
 実施することにより、英語を読む必要がなくなる。
 
@@ -370,12 +462,12 @@
     LC_ALL=
     ```
 
-##### 3.4.5.1. 参考サイト
+##### 3.4.7.1. 参考サイト
 
 1. [ubuntu wsl2 日本語化 - Google 検索](https://www.google.com/search?q=ubuntu+wsl2+日本語化)
     1. [WSL2のUbuntu 20.04を日本語化する - Qiita](https://qiita.com/myalpine/items/fb45b222924b2e61ea9f)
 
-#### 3.4.6. [任意] インタラクティブシェル設定ファイルへの設定の追加
+#### 3.4.8. [任意] インタラクティブシェル設定ファイルへの設定の追加
 
 実施することにより、インタラクティブシェルを起動する時に実行されるコマンドを追加できる。
 
@@ -399,12 +491,12 @@
 4. [任意] `Ubuntu 22.04`でインタラクティブシェル設定ファイルのシンボリックリンクを作成するため、本リポジトリをクローンした後に下記コマンドを実行する
     ```shell
     $ # インタラクティブシェル設定ファイルのシンボリックリンクを作成する
-    $ ln -sf <Gitフォルダパス>/dev-env-for-windows/config/Ubuntu/.bashrc ~/.bashrc
+    $ ln -sf <Gitフォルダパス>/config/dev-env-for-windows/config/Ubuntu/.bashrc ~/.bashrc
     $ # 当該ファイルを一覧表示する
     $ ll ~/.bashrc
     ```
 
-#### 3.4.7. [任意] エイリアス定義ファイルの作成
+#### 3.4.9. [任意] エイリアス定義ファイルの作成
 
 実施することにより、コマンドのエイリアス(ショートカット)を作成できる。
 
@@ -427,12 +519,12 @@
 4. [任意] `Ubuntu 22.04`でエイリアス定義ファイルのシンボリックリンクを作成するため、本リポジトリをクローンした後に下記コマンドを実行する
     ```shell
     $ # エイリアス定義ファイルのシンボリックリンクを作成する
-    $ ln -sf <Gitフォルダパス>/dev-env-for-windows/config/Ubuntu/.bash_aliases ~/.bash_aliases
+    $ ln -sf <Gitフォルダパス>/config/dev-env-for-windows/config/Ubuntu/.bash_aliases ~/.bash_aliases
     $ # 当該ファイルを一覧表示する
     $ ll ~/.bash_aliases
     ```
 
-#### 3.4.8. [任意] VSCodeのユーザ設定の同期
+#### 3.4.10. [任意] VSCodeのユーザ設定の同期
 
 実施することにより、`VSCode`の拡張機能である`Sync Settings`でユーザ設定を反映できる。
 
@@ -449,14 +541,14 @@
     repository:
       type: file
       # path of the local directory to sync with, required
-      path: 'Z:/home/silverag/workspace/Git/config/vscode-settings'
+      path: 'Z:/home/silverag/workspace/Git/private/config/vscode-settings'
     ```
     - 普段使用している設定は[`settings.yml`](./config/Windows/settings.yml)で管理している
 4. `Windows 10`で`VSCode`のユーザ設定をダウンロードするため、下記操作を実施する
     1. `管理＞コマンド パレット`をクリックする(`Ctrl+Shift+P`)
     2. `Sync Settings: Download (repository -> user)`を入力してEnterを押下する
 
-#### 3.4.9. [任意] Chromiumのインストール
+#### 3.4.11. [任意] Chromiumのインストール
 
 実施することにより、Chromiumをインストールでき、`VSCode`の拡張機能である`Markdown PDF`でmdファイルをPDFに変換できる。
 
@@ -494,7 +586,7 @@
     </fontconfig>
     ```
 
-##### 3.4.9.1. 参考サイト
+##### 3.4.11.1. 参考サイト
 
 1. [markdown-pdf wsl2 export Error: Failed to launch the browser process No such file or directory - Google 検索](https://www.google.com/search?q=markdown-pdf+wsl2+export+Error%3A+Failed+to+launch+the+browser+process+No+such+file+or+directory)
     1. [Markdown PDFで Error: Failed to launch the browser process! が発生した際の解消方法 #VSCode - Qiita](https://qiita.com/I_s/items/5ba9a19d933598bc7f69)
