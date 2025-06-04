@@ -8,12 +8,12 @@ profile: main
 repository:
   type: file
   # path of the local directory to sync with, required
-  path: 'Z:/home/silverag/workspace/Git/config/vscode-settings'
+  path: 'Z:/home/silverag/workspace/Git/private/config/vscode-settings'
 
 # # sync on local git
 # repository:
 #   type: git
 #   # path of the local git repository to sync with, required
-#   path: 'Z:/home/silverag/workspace/Git/config/vscode-settings'
+#   path: 'Z:/home/silverag/workspace/Git/private/config/vscode-settings'
 #   # branch to sync on, optional (set to `master` by default)
 #   branch: main

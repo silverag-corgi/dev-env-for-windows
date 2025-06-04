@@ -39,7 +39,7 @@ if [ ! $(shopt -oq posix) ]; then
 fi
 
 # プロンプトの表示形式を変更する
-export GIT_PROMPT_SH_PATH=~/workspace/Git/git/git/contrib/completion/git-prompt.sh
+export GIT_PROMPT_SH_PATH=~/workspace/Git/private/git/git/contrib/completion/git-prompt.sh
 function change_prompt_format() {
     local remove_color='\[\033[00;00m\]'
     local ps1_user_color='\[\033[01;32m\]'
