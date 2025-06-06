@@ -32,17 +32,10 @@
     - [3.4.11. \[任意\] Chromiumのインストール](#3411-任意-chromiumのインストール)
       - [3.4.11.1. 参考サイト](#34111-参考サイト)
   - [3.5. Dockerのインストール](#35-dockerのインストール)
-    - [3.5.1. \[DockerEngine版\] Dockerのインストール](#351-dockerengine版-dockerのインストール)
+    - [3.5.1. Dockerのインストール](#351-dockerのインストール)
       - [3.5.1.1. 参考サイト](#3511-参考サイト)
-    - [3.5.2. \[DockerEngine版\] Dockerの自動起動の設定](#352-dockerengine版-dockerの自動起動の設定)
+    - [3.5.2. Dockerの自動起動の設定](#352-dockerの自動起動の設定)
       - [3.5.2.1. 参考サイト](#3521-参考サイト)
-    - [3.5.3. \[DockerDesktop版\] Dockerのインストール](#353-dockerdesktop版-dockerのインストール)
-      - [3.5.3.1. 参考サイト](#3531-参考サイト)
-- [4. トラブルシューティング](#4-トラブルシューティング)
-  - [4.1. \[DockerDesktop版\] Dockerの起動に失敗する](#41-dockerdesktop版-dockerの起動に失敗する)
-    - [4.1.1. エラーログ](#411-エラーログ)
-    - [4.1.2. 解決方法](#412-解決方法)
-    - [4.1.3. 参考サイト](#413-参考サイト)
 
 ## 1. 概要
 
@@ -51,10 +44,12 @@
 
 ## 2. 構成図
 
-下記図のように開発環境を構築すると、`VSCode`から拡張機能`Dev Containers`を用いて`Docker`のコンテナにアクセスし、コンテナ内にあるファイルを`VSCode`上で編集できる。
+下記図のように開発環境を構築すると`VSCode`から拡張機能`Dev Containers`を用いて、
+`Docker`のコンテナにアクセスしてコンテナ内にあるファイルを`VSCode`上で編集できる。
 なお、ファイルはマウントすることによりコンテナ内で永続化できる。
 
 また、`Docker Engine`と`Docker Desktop`のどちらを用いるかで構成図が異なる。
+本手順では`Docker Engine`を用いる。
 
 - DockerEngine版
   ![](img/構成図/構成図_現行_DockerEngine版.png)
@@ -91,7 +86,8 @@
 > Linuxコンテナにバインドマウントされるソースコードや他のデータを、WindowsファイルシステムよりLinuxファイルシステムに格納することを推奨しています。
 > マイクロソフトからの[おすすめ](https://learn.microsoft.com/ja-jp/windows/wsl/compare-versions)も参照してください。
 
-つまり、データをバインドマウントする時、WindowsファイルシステムのデータをLinuxファイルシステムにマウントするのはかなり遅くなるため止めた方がよいとのこと。
+つまり、データをバインドマウントする時、WindowsファイルシステムのデータをLinuxファイルシステムにマウントするのは、
+かなり遅くなるため止めた方がよいとのこと。
 マウントするのであれば、Linuxファイルシステムのデータを同じくLinuxファイルシステムにマウントした方がよいとのこと。
 
 実際、あるリポジトリをビルドした際にはとても遅く感じた上に、コマンドの返却も10秒程度の遅延があった。
@@ -594,7 +590,7 @@
 
 ### 3.5. Dockerのインストール
 
-#### 3.5.1. [DockerEngine版] Dockerのインストール
+#### 3.5.1. Dockerのインストール
 
 1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
 2. `Ubuntu 22.04`でAptリポジトリをセットアップするため、下記コマンドを実行する
@@ -694,7 +690,7 @@
 3. [Error initializing network controller: error obtaining controller instance: unable to add return rule in DOCKER-ISOLATION-STAGE-1 chain: - Google 検索](https://www.google.com/search?q=Error+initializing+network+controller%3A+error+obtaining+controller+instance%3A+unable+to+add+return+rule+in+DOCKER-ISOLATION-STAGE-1+chain%3A)
     1. [WSL2のUbuntuを22.04にアップグレードしたらdockerが起動できなくなった - Qiita](https://qiita.com/tkc_tsuchiya/items/f7f4d502d8e2728f69c5)
 
-#### 3.5.2. [DockerEngine版] Dockerの自動起動の設定
+#### 3.5.2. Dockerの自動起動の設定
 
 1. `Ubuntu 22.04`でWSL設定ファイル(ディストリビューション版)を編集するため、下記コマンドを実行する
     ```shell
@@ -749,79 +745,3 @@
 
 1. [wsl2 systemd docker - Google 検索](https://www.google.com/search?q=wsl2+systemd+docker)
     1. [WSL2起動時にdockerなどのサービスを同時に起動する(systemd利用) - Qiita](https://qiita.com/junkor-1011/items/60f92800e9a80e3f70da)
-
-#### 3.5.3. [DockerDesktop版] Dockerのインストール
-
-1. `Windows 10`で下記リンクからWindows版の`Docker Desktop`をダウンロードし、インストールする
-    - [Get Started with Docker](https://www.docker.com/get-started/)
-2. `Windows 10`で`Docker Desktop`を起動する
-3. `Windows 10`でWSL2ベースエンジンを使用する設定にするため、`Docker Desktop`の下記設定を有効化する
-    - `Settings => General => Use the WSL 2 based engine`
-4. `Windows 10`で`Ubuntu 22.04`内でDockerのコマンドを実行できるようにするため、`Docker Desktop`の下記設定を有効化する
-    - `Settings => Resources => WSL Integration => Enable integration with my default WSL distro`
-    - `Settings => Resources => WSL Integration => Ubuntu-22.04`
-
-##### 3.5.3.1. 参考サイト
-
-1. [devcontainer wsl2 - Google 検索](https://www.google.com/search?q=devcontainer+wsl2)
-    1. [WSL2 + VSCode DevContainerでFilesharingの警告 - Qiita](https://qiita.com/noonworks/items/5d49e019e794dbabe92a)
-
-## 4. トラブルシューティング
-
-本環境で頻発するエラーへの解決方法をまとめる。
-
-`Docker Engine`を用いた環境の場合はタイトルの先頭に`DockerEngine版`がある手順を実施する。
-また、`Docker Desktop`を用いた環境の場合はタイトルの先頭に`DockerDesktop版`がある手順を実施する。
-
-### 4.1. [DockerDesktop版] Dockerの起動に失敗する
-
-#### 4.1.1. エラーログ
-
-```log
-Docker.Core.HttpBadResponseException:
-{
-  "message":"
-    1 error occurred:
-      * starting WSL integration service: synchronising agents: starting added distros: 1 error occurred:
-      * waiting for WSL integration for Ubuntu-22.04: timed out while polling for WSL distro integration to become ready in \"Ubuntu-22.04\"
-  "
-}
-
-  場所 Docker.Core.GoBackend.GoBackendClient.<PostNoBodyWithError>d__19.MoveNext() 場所 C:\workspaces\4.16.x\src\github.com\docker\pinata\win\src\Docker.Core\GoBackend\GoBackendClient.cs:行 226
---- 直前に例外がスローされた場所からのスタック トレースの終わり ---
-  場所 System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
-  場所 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-  場所 Docker.Engines.WSL2.LinuxWSL2Engine.<DoStartAsync>d__11.MoveNext() 場所 C:\workspaces\4.16.x\src\github.com\docker\pinata\win\src\Docker.Engines\WSL2\LinuxWSL2Engine.cs:行 54
---- 直前に例外がスローされた場所からのスタック トレースの終わり ---
-  場所 System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
-  場所 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-  場所 Docker.ApiServices.StateMachines.TaskExtensions.<WrapAsyncInCancellationException>d__0.MoveNext() 場所 C:\workspaces\4.16.x\src\github.com\docker\pinata\win\src\Docker.ApiServices\StateMachines\TaskExtensions.cs:行 29
---- 直前に例外がスローされた場所からのスタック トレースの終わり ---
-  場所 System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
-  場所 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-  場所 Docker.ApiServices.StateMachines.StartTransition.<DoRunAsync>d__6.MoveNext() 場所 C:\workspaces\4.16.x\src\github.com\docker\pinata\win\src\Docker.ApiServices\StateMachines\StartTransition.cs:行 91
---- 直前に例外がスローされた場所からのスタック トレースの終わり ---
-  場所 System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
-  場所 Docker.ApiServices.StateMachines.StartTransition.<DoRunAsync>d__6.MoveNext() 場所 C:\workspaces\4.16.x\src\github.com\docker\pinata\win\src\Docker.ApiServices\StateMachines\StartTransition.cs:行 118
---- 直前に例外がスローされた場所からのスタック トレースの終わり ---
-  場所 System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
-  場所 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-  場所 Docker.ApiServices.StateMachines.EngineStateMachine.<StartAsync>d__15.MoveNext() 場所 C:\workspaces\4.16.x\src\github.com\docker\pinata\win\src\Docker.ApiServices\StateMachines\EngineStateMachine.cs:行 72
---- 直前に例外がスローされた場所からのスタック トレースの終わり ---
-  場所 System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
-  場所 System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-  場所 Docker.Engines.Engines.<StartAsync>d__23.MoveNext() 場所 C:\workspaces\4.16.x\src\github.com\docker\pinata\win\src\Docker.Engines\Engines.cs:行 109
-```
-
-#### 4.1.2. 解決方法
-
-1. `Windows 10`で`WSL`を再起動するため、下記コマンドを`PowerShell`で実行する
-    ```shell
-    > # WSLを再起動する
-    > wsl --shutdown
-    ```
-
-#### 4.1.3. 参考サイト
-
-1. [docker timed out while polling for WSL distro integration to become ready - Google 検索](https://www.google.com/search?q=docker+timed+out+while+polling+for+WSL+distro+integration+to+become+ready)
-    1. [wsl 2 - Docker not starting up after installation - Stack Overflow](https://stackoverflow.com/questions/75384185/docker-not-starting-up-after-installation)
