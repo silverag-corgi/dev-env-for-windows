@@ -18,24 +18,23 @@
       - [3.4.1.1. 参考サイト](#3411-参考サイト)
     - [3.4.2. DNSサーバーの設定](#342-dnsサーバーの設定)
       - [3.4.2.1. 参考サイト](#3421-参考サイト)
-    - [3.4.3. Gitフォルダ(私用・仕事用)の作成](#343-gitフォルダ私用仕事用の作成)
-    - [3.4.4. Gitの設定(私用)](#344-gitの設定私用)
-    - [3.4.5. \[任意\] Gitの設定(仕事用)](#345-任意-gitの設定仕事用)
-      - [3.4.5.1. 参考サイト](#3451-参考サイト)
-    - [3.4.6. Gitリポジトリのクローン](#346-gitリポジトリのクローン)
-      - [3.4.6.1. 参考: カテゴリフォルダの作成とGitリポジトリのクローンに関するコマンド](#3461-参考-カテゴリフォルダの作成とgitリポジトリのクローンに関するコマンド)
-    - [3.4.7. \[任意\] 日本語化](#347-任意-日本語化)
+    - [3.4.3. 日本語化](#343-日本語化)
+      - [3.4.3.1. 参考サイト](#3431-参考サイト)
+    - [3.4.4. Gitフォルダ(私用・仕事用)の作成](#344-gitフォルダ私用仕事用の作成)
+    - [3.4.5. Gitリポジトリのクローン](#345-gitリポジトリのクローン)
+      - [3.4.5.1. 参考: カテゴリフォルダの作成とGitリポジトリのクローンに関するコマンド](#3451-参考-カテゴリフォルダの作成とgitリポジトリのクローンに関するコマンド)
+    - [3.4.6. Gitの設定(私用)](#346-gitの設定私用)
+    - [3.4.7. \[任意\] Gitの設定(仕事用)](#347-任意-gitの設定仕事用)
       - [3.4.7.1. 参考サイト](#3471-参考サイト)
-    - [3.4.8. \[任意\] インタラクティブシェル設定ファイルへの設定の追加](#348-任意-インタラクティブシェル設定ファイルへの設定の追加)
-    - [3.4.9. \[任意\] エイリアス定義ファイルの作成](#349-任意-エイリアス定義ファイルの作成)
-    - [3.4.10. \[任意\] VSCodeのユーザ設定の同期](#3410-任意-vscodeのユーザ設定の同期)
-    - [3.4.11. \[任意\] Chromiumのインストール](#3411-任意-chromiumのインストール)
+    - [3.4.8. インタラクティブシェル設定ファイルへの設定の追加](#348-インタラクティブシェル設定ファイルへの設定の追加)
+    - [3.4.9. エイリアス定義ファイルの作成](#349-エイリアス定義ファイルの作成)
+    - [3.4.10. VSCodeのユーザ設定の同期](#3410-vscodeのユーザ設定の同期)
+    - [3.4.11. Dockerのインストール](#3411-dockerのインストール)
       - [3.4.11.1. 参考サイト](#34111-参考サイト)
-  - [3.5. Dockerのインストール](#35-dockerのインストール)
-    - [3.5.1. Dockerのインストール](#351-dockerのインストール)
-      - [3.5.1.1. 参考サイト](#3511-参考サイト)
-    - [3.5.2. Dockerの自動起動の設定](#352-dockerの自動起動の設定)
-      - [3.5.2.1. 参考サイト](#3521-参考サイト)
+    - [3.4.12. Dockerの自動起動の設定](#3412-dockerの自動起動の設定)
+      - [3.4.12.1. 参考サイト](#34121-参考サイト)
+    - [3.4.13. \[任意\] Chromiumのインストール](#3413-任意-chromiumのインストール)
+      - [3.4.13.1. 参考サイト](#34131-参考サイト)
 
 ## 1. 概要
 
@@ -267,7 +266,53 @@
 1. [wsl2 ubuntu dns - Google 検索](https://www.google.com/search?q=wsl2+ubuntu+dns)
     1. [WSL2 で dns の名前解決ができなくなってネット接続できなくなった場合の対処方法 - Qiita](https://qiita.com/kkato233/items/1fc71bde5a6d94f1b982)
 
-#### 3.4.3. Gitフォルダ(私用・仕事用)の作成
+#### 3.4.3. 日本語化
+
+実施することにより、英語を読む必要がなくなる。
+
+1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
+2. `Ubuntu 22.04`で言語を日本語に設定するため、下記コマンドを実行する
+    ```shell
+    $ # パッケージ一覧を更新し、パッケージをアップグレードする
+    $ sudo apt -y update && sudo apt -y upgrade
+    $ # 日本語関連パッケージをインストールする
+    $ sudo apt -y install task-japanese
+    $ # ロケールを日本語・日本に更新する
+    $ sudo update-locale LANG=ja_JP.UTF-8
+    ```
+3. `Windows 10`で`WSL`を再起動するため、下記コマンドを`PowerShell`で実行する
+    ```shell
+    > # WSLを再起動する
+    > wsl --shutdown
+    ```
+4. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
+5. `Ubuntu 22.04`でロケールが日本語・日本に更新されているか確認するため、下記コマンドを実行する
+    ```shell
+    $ # ロケール情報を表示する
+    $ locale
+    LANG=ja_JP.UTF-8
+    LANGUAGE=
+    LC_CTYPE="ja_JP.UTF-8"
+    LC_NUMERIC="ja_JP.UTF-8"
+    LC_TIME="ja_JP.UTF-8"
+    LC_COLLATE="ja_JP.UTF-8"
+    LC_MONETARY="ja_JP.UTF-8"
+    LC_MESSAGES="ja_JP.UTF-8"
+    LC_PAPER="ja_JP.UTF-8"
+    LC_NAME="ja_JP.UTF-8"
+    LC_ADDRESS="ja_JP.UTF-8"
+    LC_TELEPHONE="ja_JP.UTF-8"
+    LC_MEASUREMENT="ja_JP.UTF-8"
+    LC_IDENTIFICATION="ja_JP.UTF-8"
+    LC_ALL=
+    ```
+
+##### 3.4.3.1. 参考サイト
+
+1. [ubuntu wsl2 日本語化 - Google 検索](https://www.google.com/search?q=ubuntu+wsl2+日本語化)
+    1. [WSL2のUbuntu 20.04を日本語化する - Qiita](https://qiita.com/myalpine/items/fb45b222924b2e61ea9f)
+
+#### 3.4.4. Gitフォルダ(私用・仕事用)の作成
 
 1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
 2. `Ubuntu 22.04`でGitフォルダ(私用・仕事用)を作成するため、下記コマンドを実行する
@@ -281,73 +326,7 @@
     - 基本的には私用Gitフォルダを使用する
     - 仕事関連のリポジトリをクローンする場合は仕事用Gitフォルダを使用する
 
-#### 3.4.4. Gitの設定(私用)
-
-1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
-2. `Ubuntu 22.04`でGit設定ファイルを作成して編集するため、下記コマンドを実行する
-    ```shell
-    $ # Git設定ファイルを作成する
-    $ touch ~/.gitconfig
-    $ # 当該ファイルを開く
-    $ code ~/.gitconfig
-    ```
-3. `Ubuntu 22.04`でGit設定ファイルに下記内容を参考に追記する
-    ```conf
-    [user]
-        # Gitアカウント情報
-        name = <ユーザ名>
-        email = <メールアドレス>
-    [credential]
-        # 認証情報を保存する (24時間キャッシュする)
-        helper = cache --timeout=86400
-    [safe]
-        # ディレクトリの安全性を保証する (全てのディレクトリ)
-        directory = *
-    [core]
-        # 改行コードを自動的に変換する (チェックアウト=>元のまま,コミット=>Linuxの改行コードへの変換)
-        autocrlf = input
-    ```
-    - 普段使用している設定は[`.gitconfig`](./config/Ubuntu/.gitconfig)で管理している
-    - もし、追記する設定と管理している設定が同じ場合、後述の任意の手順を実施してもよい
-4. [任意] `Ubuntu 22.04`でGit設定ファイルのシンボリックリンクを作成するため、本リポジトリをクローンした後に下記コマンドを実行する
-    ```shell
-    $ # Git設定ファイルのシンボリックリンクを作成する
-    $ ln -sf <Gitフォルダパス>/config/dev-env-for-windows/config/Ubuntu/.gitconfig ~/.gitconfig
-    $ # 当該ファイルを一覧表示する
-    $ ll ~/.gitconfig
-    ```
-
-#### 3.4.5. [任意] Gitの設定(仕事用)
-
-実施することにより、仕事用フォルダ配下でGit設定ファイル(仕事用)に切り替えることができる。
-
-1. `Ubuntu 22.04`でGit設定ファイル(仕事用)を作成して編集するため、下記コマンドを実行する
-    ```shell
-    $ # Git設定ファイル(仕事用)を作成する
-    $ cp .gitconfig-business.sample .gitconfig-business
-    $ # 当該ファイルを一覧表示する
-    $ ll .gitconfig-business
-    $ # 当該ファイルを開く
-    $ code .gitconfig-business
-    ```
-2. `Ubuntu 22.04`でGit設定ファイル(仕事用)に下記内容を参考に追記する
-    ```conf
-    [user]
-        # Gitアカウント情報
-        name = <ユーザ名>
-        email = <メールアドレス>
-    ```
-
-##### 3.4.5.1. 参考サイト
-
-1. [.gitconfig おすすめ - Google 検索](https://www.google.com/search?q=.gitconfig+おすすめ)
-    1. [Gitを使い始めたら一番最初にやりたい `git config`設定メモ](https://blog.katsubemakito.net/git/git-config-1st)
-2. [git log fatal: detected dubious ownership in repository at - Google 検索](https://www.google.com/search?q=git+log+fatal%3A+detected+dubious+ownership+in+repository+at)
-    1. [git submodule update failed with 'fatal: detected dubious ownership in repository at' - Stack Overflow](https://stackoverflow.com/questions/72978485/git-submodule-update-failed-with-fatal-detected-dubious-ownership-in-repositor)
-3. [git autocrlf - Google 検索](https://www.google.com/search?q=git+autocrlf)
-    1. [Git の自動改行コード変換 AutoCrlf ってどんな機能なの？ - ultra code](https://futureys.tokyo/what-is-autocrlf-of-git/)
-
-#### 3.4.6. Gitリポジトリのクローン
+#### 3.4.5. Gitリポジトリのクローン
 
 1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
 2. `Ubuntu 22.04`で必用なリポジトリをクローンするため、下記コマンドを実行する
@@ -358,7 +337,7 @@
     $ git clone <リモートリポジトリのURL>
     ```
 
-##### 3.4.6.1. 参考: カテゴリフォルダの作成とGitリポジトリのクローンに関するコマンド
+##### 3.4.5.1. 参考: カテゴリフォルダの作成とGitリポジトリのクローンに関するコマンド
 
 <details>
 <summary>詳細</summary>
@@ -417,53 +396,73 @@
 
 </details>
 
-#### 3.4.7. [任意] 日本語化
-
-実施することにより、英語を読む必要がなくなる。
+#### 3.4.6. Gitの設定(私用)
 
 1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
-2. `Ubuntu 22.04`で言語を日本語に設定するため、下記コマンドを実行する
+2. `Ubuntu 22.04`でGit設定ファイルを作成して編集するため、下記コマンドを実行する
     ```shell
-    $ # パッケージ一覧を更新し、パッケージをアップグレードする
-    $ sudo apt -y update && sudo apt -y upgrade
-    $ # 日本語関連パッケージをインストールする
-    $ sudo apt -y install task-japanese
-    $ # ロケールを日本語・日本に更新する
-    $ sudo update-locale LANG=ja_JP.UTF-8
+    $ # Git設定ファイルを作成する
+    $ touch ~/.gitconfig
+    $ # 当該ファイルを開く
+    $ code ~/.gitconfig
     ```
-3. `Windows 10`で`WSL`を再起動するため、下記コマンドを`PowerShell`で実行する
-    ```shell
-    > # WSLを再起動する
-    > wsl --shutdown
+3. `Ubuntu 22.04`でGit設定ファイルに下記内容を参考に追記する
+    ```conf
+    [user]
+        # Gitアカウント情報
+        name = <ユーザ名>
+        email = <メールアドレス>
+    [credential]
+        # 認証情報を保存する (24時間キャッシュする)
+        helper = cache --timeout=86400
+    [safe]
+        # ディレクトリの安全性を保証する (全てのディレクトリ)
+        directory = *
+    [core]
+        # 改行コードを自動的に変換する (チェックアウト=>元のまま,コミット=>Linuxの改行コードへの変換)
+        autocrlf = input
     ```
-4. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
-5. `Ubuntu 22.04`でロケールが日本語・日本に更新されているか確認するため、下記コマンドを実行する
+    - 普段使用している設定は[`.gitconfig`](./config/Ubuntu/.gitconfig)で管理している
+    - もし、追記する設定と管理している設定が同じ場合、後述の任意の手順を実施してもよい
+4. [任意] `Ubuntu 22.04`でGit設定ファイルのシンボリックリンクを作成するため、本リポジトリをクローンした後に下記コマンドを実行する
     ```shell
-    $ # ロケール情報を表示する
-    $ locale
-    LANG=ja_JP.UTF-8
-    LANGUAGE=
-    LC_CTYPE="ja_JP.UTF-8"
-    LC_NUMERIC="ja_JP.UTF-8"
-    LC_TIME="ja_JP.UTF-8"
-    LC_COLLATE="ja_JP.UTF-8"
-    LC_MONETARY="ja_JP.UTF-8"
-    LC_MESSAGES="ja_JP.UTF-8"
-    LC_PAPER="ja_JP.UTF-8"
-    LC_NAME="ja_JP.UTF-8"
-    LC_ADDRESS="ja_JP.UTF-8"
-    LC_TELEPHONE="ja_JP.UTF-8"
-    LC_MEASUREMENT="ja_JP.UTF-8"
-    LC_IDENTIFICATION="ja_JP.UTF-8"
-    LC_ALL=
+    $ # Git設定ファイルのシンボリックリンクを作成する
+    $ ln -sf <Gitフォルダパス>/config/dev-env-for-windows/config/Ubuntu/.gitconfig ~/.gitconfig
+    $ # 当該ファイルを一覧表示する
+    $ ll ~/.gitconfig
+    ```
+
+#### 3.4.7. [任意] Gitの設定(仕事用)
+
+実施することにより、仕事用フォルダ配下でGit設定ファイル(仕事用)に切り替えることができる。
+
+1. `Ubuntu 22.04`でGit設定ファイル(仕事用)を作成して編集するため、下記コマンドを実行する
+    ```shell
+    $ # Git設定ファイル(仕事用)を作成する
+    $ cp .gitconfig-business.sample .gitconfig-business
+    $ # 当該ファイルを一覧表示する
+    $ ll .gitconfig-business
+    $ # 当該ファイルを開く
+    $ code .gitconfig-business
+    ```
+2. `Ubuntu 22.04`でGit設定ファイル(仕事用)に下記内容を参考に追記する
+    ```conf
+    [user]
+        # Gitアカウント情報
+        name = <ユーザ名>
+        email = <メールアドレス>
     ```
 
 ##### 3.4.7.1. 参考サイト
 
-1. [ubuntu wsl2 日本語化 - Google 検索](https://www.google.com/search?q=ubuntu+wsl2+日本語化)
-    1. [WSL2のUbuntu 20.04を日本語化する - Qiita](https://qiita.com/myalpine/items/fb45b222924b2e61ea9f)
+1. [.gitconfig おすすめ - Google 検索](https://www.google.com/search?q=.gitconfig+おすすめ)
+    1. [Gitを使い始めたら一番最初にやりたい `git config`設定メモ](https://blog.katsubemakito.net/git/git-config-1st)
+2. [git log fatal: detected dubious ownership in repository at - Google 検索](https://www.google.com/search?q=git+log+fatal%3A+detected+dubious+ownership+in+repository+at)
+    1. [git submodule update failed with 'fatal: detected dubious ownership in repository at' - Stack Overflow](https://stackoverflow.com/questions/72978485/git-submodule-update-failed-with-fatal-detected-dubious-ownership-in-repositor)
+3. [git autocrlf - Google 検索](https://www.google.com/search?q=git+autocrlf)
+    1. [Git の自動改行コード変換 AutoCrlf ってどんな機能なの？ - ultra code](https://futureys.tokyo/what-is-autocrlf-of-git/)
 
-#### 3.4.8. [任意] インタラクティブシェル設定ファイルへの設定の追加
+#### 3.4.8. インタラクティブシェル設定ファイルへの設定の追加
 
 実施することにより、インタラクティブシェルを起動する時に実行されるコマンドを追加できる。
 
@@ -492,7 +491,7 @@
     $ ll ~/.bashrc
     ```
 
-#### 3.4.9. [任意] エイリアス定義ファイルの作成
+#### 3.4.9. エイリアス定義ファイルの作成
 
 実施することにより、コマンドのエイリアス(ショートカット)を作成できる。
 
@@ -520,7 +519,7 @@
     $ ll ~/.bash_aliases
     ```
 
-#### 3.4.10. [任意] VSCodeのユーザ設定の同期
+#### 3.4.10. VSCodeのユーザ設定の同期
 
 実施することにより、`VSCode`の拡張機能である`Sync Settings`でユーザ設定を反映できる。
 
@@ -544,53 +543,7 @@
     1. `管理＞コマンド パレット`をクリックする(`Ctrl+Shift+P`)
     2. `Sync Settings: Download (repository -> user)`を入力してEnterを押下する
 
-#### 3.4.11. [任意] Chromiumのインストール
-
-実施することにより、Chromiumをインストールでき、`VSCode`の拡張機能である`Markdown PDF`でmdファイルをPDFに変換できる。
-
-1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
-2. `Ubuntu 22.04`で`Chromium`をインストールするため、下記コマンドを実行する
-    ```shell
-    $ # Chromiumパッケージをインストールする
-    $ sudo apt install chromium-browser
-    $ # インストールパスを確認する
-    $ which chromium-browser
-    /usr/bin/chromium-browser
-    ```
-3. `Windows 10`で`VSCode`の設定ファイルを編集するため、下記操作を実施する
-    1. `管理＞設定`をクリックする(`Ctrl+,`)
-    2. `設定 (JSON) を開く`をクリックする
-4. `Windows 10`で`VSCode`の設定ファイルに下記内容を追記する
-    ```json
-    "markdown-pdf.executablePath": "/usr/bin/chromium-browser", // Chromiumのインストールパス
-    ```
-5. `Ubuntu 22.04`でフォント設定ファイル(グローバル版)を作成して編集するため、下記コマンドを実行する
-    ```shell
-    $ # フォント設定ファイル(グローバル版)を作成する
-    $ sudo touch /etc/fonts/local.conf
-    $ # アクセス権限を設定する
-    $ sudo chmod 666 /etc/fonts/local.conf
-    $ # 当該ファイルを開く
-    $ code /etc/fonts/local.conf
-    ```
-6. `Ubuntu 22.04`で日本語フォントの文字化けを回避するため、フォント設定ファイル(グローバル版)に下記内容を追記する
-    ```conf
-    <?xml version="1.0"?>
-    <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-    <fontconfig>
-        <dir>/mnt/c/Windows/Fonts</dir>
-    </fontconfig>
-    ```
-
-##### 3.4.11.1. 参考サイト
-
-1. [markdown-pdf wsl2 export Error: Failed to launch the browser process No such file or directory - Google 検索](https://www.google.com/search?q=markdown-pdf+wsl2+export+Error%3A+Failed+to+launch+the+browser+process+No+such+file+or+directory)
-    1. [Markdown PDFで Error: Failed to launch the browser process! が発生した際の解消方法 #VSCode - Qiita](https://qiita.com/I_s/items/5ba9a19d933598bc7f69)
-    2. [WSL 上で VS Code の Markdown PDF から PDF 出力ができないときの解決方法 | MSeeeeN](https://mseeeen.msen.jp/setup-markdown-pdf-on-wsl-vscode/#日本語フォントのインストール)
-
-### 3.5. Dockerのインストール
-
-#### 3.5.1. Dockerのインストール
+#### 3.4.11. Dockerのインストール
 
 1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
 2. `Ubuntu 22.04`でAptリポジトリをセットアップするため、下記コマンドを実行する
@@ -680,7 +633,7 @@
     Hello from Docker!
     ```
 
-##### 3.5.1.1. 参考サイト
+##### 3.4.11.1. 参考サイト
 
 1. [docker cli ubuntu - Google 検索](https://www.google.com/search?q=docker+cli+ubuntu)
     1. [Install Docker Engine on Ubuntu | Docker Docs](https://docs.docker.com/engine/install/ubuntu/)
@@ -690,7 +643,7 @@
 3. [Error initializing network controller: error obtaining controller instance: unable to add return rule in DOCKER-ISOLATION-STAGE-1 chain: - Google 検索](https://www.google.com/search?q=Error+initializing+network+controller%3A+error+obtaining+controller+instance%3A+unable+to+add+return+rule+in+DOCKER-ISOLATION-STAGE-1+chain%3A)
     1. [WSL2のUbuntuを22.04にアップグレードしたらdockerが起動できなくなった - Qiita](https://qiita.com/tkc_tsuchiya/items/f7f4d502d8e2728f69c5)
 
-#### 3.5.2. Dockerの自動起動の設定
+#### 3.4.12. Dockerの自動起動の設定
 
 1. `Ubuntu 22.04`でWSL設定ファイル(ディストリビューション版)を編集するため、下記コマンドを実行する
     ```shell
@@ -741,7 +694,51 @@
     Hello from Docker!
     ```
 
-##### 3.5.2.1. 参考サイト
+##### 3.4.12.1. 参考サイト
 
 1. [wsl2 systemd docker - Google 検索](https://www.google.com/search?q=wsl2+systemd+docker)
     1. [WSL2起動時にdockerなどのサービスを同時に起動する(systemd利用) - Qiita](https://qiita.com/junkor-1011/items/60f92800e9a80e3f70da)
+
+#### 3.4.13. [任意] Chromiumのインストール
+
+実施することにより、Chromiumをインストールでき、`VSCode`の拡張機能である`Markdown PDF`でmdファイルをPDFに変換できる。
+
+1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
+2. `Ubuntu 22.04`で`Chromium`をインストールするため、下記コマンドを実行する
+    ```shell
+    $ # Chromiumパッケージをインストールする
+    $ sudo apt install chromium-browser
+    $ # インストールパスを確認する
+    $ which chromium-browser
+    /usr/bin/chromium-browser
+    ```
+3. `Windows 10`で`VSCode`の設定ファイルを編集するため、下記操作を実施する
+    1. `管理＞設定`をクリックする(`Ctrl+,`)
+    2. `設定 (JSON) を開く`をクリックする
+4. `Windows 10`で`VSCode`の設定ファイルに下記内容を追記する
+    ```json
+    "markdown-pdf.executablePath": "/usr/bin/chromium-browser", // Chromiumのインストールパス
+    ```
+5. `Ubuntu 22.04`でフォント設定ファイル(グローバル版)を作成して編集するため、下記コマンドを実行する
+    ```shell
+    $ # フォント設定ファイル(グローバル版)を作成する
+    $ sudo touch /etc/fonts/local.conf
+    $ # アクセス権限を設定する
+    $ sudo chmod 666 /etc/fonts/local.conf
+    $ # 当該ファイルを開く
+    $ code /etc/fonts/local.conf
+    ```
+6. `Ubuntu 22.04`で日本語フォントの文字化けを回避するため、フォント設定ファイル(グローバル版)に下記内容を追記する
+    ```conf
+    <?xml version="1.0"?>
+    <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+    <fontconfig>
+        <dir>/mnt/c/Windows/Fonts</dir>
+    </fontconfig>
+    ```
+
+##### 3.4.13.1. 参考サイト
+
+1. [markdown-pdf wsl2 export Error: Failed to launch the browser process No such file or directory - Google 検索](https://www.google.com/search?q=markdown-pdf+wsl2+export+Error%3A+Failed+to+launch+the+browser+process+No+such+file+or+directory)
+    1. [Markdown PDFで Error: Failed to launch the browser process! が発生した際の解消方法 #VSCode - Qiita](https://qiita.com/I_s/items/5ba9a19d933598bc7f69)
+    2. [WSL 上で VS Code の Markdown PDF から PDF 出力ができないときの解決方法 | MSeeeeN](https://mseeeen.msen.jp/setup-markdown-pdf-on-wsl-vscode/#日本語フォントのインストール)
