@@ -22,12 +22,20 @@
       - [3.4.3.1. 参考サイト](#3431-参考サイト)
     - [3.4.4. Gitフォルダ(私用・仕事用)の作成](#344-gitフォルダ私用仕事用の作成)
     - [3.4.5. Gitリポジトリのクローン](#345-gitリポジトリのクローン)
-      - [3.4.5.1. 参考: カテゴリフォルダの作成とGitリポジトリのクローンに関するコマンド](#3451-参考-カテゴリフォルダの作成とgitリポジトリのクローンに関するコマンド)
+      - [3.4.5.1. \[任意\] カテゴリフォルダの作成とGitリポジトリのクローンに関するコマンド](#3451-任意-カテゴリフォルダの作成とgitリポジトリのクローンに関するコマンド)
     - [3.4.6. Gitの設定(私用)](#346-gitの設定私用)
+      - [3.4.6.1. 本リポジトリをクローンしている場合](#3461-本リポジトリをクローンしている場合)
+      - [3.4.6.2. 本リポジトリをクローンしていない場合](#3462-本リポジトリをクローンしていない場合)
     - [3.4.7. \[任意\] Gitの設定(仕事用)](#347-任意-gitの設定仕事用)
-      - [3.4.7.1. 参考サイト](#3471-参考サイト)
+      - [3.4.7.1. 本リポジトリをクローンしている場合](#3471-本リポジトリをクローンしている場合)
+      - [3.4.7.2. 本リポジトリをクローンしていない場合](#3472-本リポジトリをクローンしていない場合)
+      - [3.4.7.3. 参考サイト](#3473-参考サイト)
     - [3.4.8. インタラクティブシェル設定ファイルへの設定の追加](#348-インタラクティブシェル設定ファイルへの設定の追加)
+      - [3.4.8.1. 本リポジトリをクローンしている場合](#3481-本リポジトリをクローンしている場合)
+      - [3.4.8.2. 本リポジトリをクローンしていない場合](#3482-本リポジトリをクローンしていない場合)
     - [3.4.9. エイリアス定義ファイルの作成](#349-エイリアス定義ファイルの作成)
+      - [3.4.9.1. 本リポジトリをクローンしている場合](#3491-本リポジトリをクローンしている場合)
+      - [3.4.9.2. 本リポジトリをクローンしていない場合](#3492-本リポジトリをクローンしていない場合)
     - [3.4.10. VSCodeのユーザ設定の同期](#3410-vscodeのユーザ設定の同期)
     - [3.4.11. Dockerのインストール](#3411-dockerのインストール)
       - [3.4.11.1. 参考サイト](#34111-参考サイト)
@@ -116,7 +124,11 @@
     - [Download Visual Studio Code - Mac, Linux, Windows](https://code.visualstudio.com/download)
 2. `Windows 10`で下記リンクから`VSCode`に拡張機能をインストールする
     - [Japanese Language Pack for Visual Studio Code - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-ja)
+      - VSCodeのメニューを日本語化する
     - [Remote Development - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
+      - `WSL`や`Dev Containers`などを使用する
+    - [Sync Settings - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=zokugun.sync-settings)
+      - VSCodeの設定ファイルを同期する (マルチデバイス対応)
 
 #### 3.1.1. 参考サイト
 
@@ -268,8 +280,6 @@
 
 #### 3.4.3. 日本語化
 
-実施することにより、英語を読む必要がなくなる。
-
 1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
 2. `Ubuntu 22.04`で言語を日本語に設定するため、下記コマンドを実行する
     ```shell
@@ -318,13 +328,13 @@
 2. `Ubuntu 22.04`でGitフォルダ(私用・仕事用)を作成するため、下記コマンドを実行する
     ```shell
     $ # Gitフォルダを作成する
-    $ # - Gitフォルダ(私用) (例: ~/workspace/Git/private)
-    $ # - Gitフォルダ(仕事用) (例: ~/workspace/Git/business)
-    $ mkdir -p <Gitフォルダ(私用)>
-    $ mkdir -p <Gitフォルダ(仕事用)>
+    $ # - Gitフォルダパス(私用) (例: ~/workspace/Git/private)
+    $ # - Gitフォルダパス(仕事用) (例: ~/workspace/Git/business)
+    $ mkdir -p <Gitフォルダパス(私用)>
+    $ mkdir -p <Gitフォルダパス(仕事用)>
     ```
-    - 基本的には私用Gitフォルダを使用する
-    - 仕事関連のリポジトリをクローンする場合は仕事用Gitフォルダを使用する
+    - 基本的にはGitフォルダ(私用)を使用する
+    - 仕事関連のリポジトリをクローンする場合はGitフォルダ(仕事用)を使用する
 
 #### 3.4.5. Gitリポジトリのクローン
 
@@ -332,12 +342,17 @@
 2. `Ubuntu 22.04`で必用なリポジトリをクローンするため、下記コマンドを実行する
     ```shell
     $ # Gitフォルダに移動する
+    $ # - Gitフォルダパス(私用) (例: ~/workspace/Git/private)
+    $ # - Gitフォルダパス(仕事用) (例: ~/workspace/Git/business)
     $ cd <Gitフォルダパス>
     $ # 必要なリポジトリをクローンする
     $ git clone <リモートリポジトリのURL>
     ```
 
-##### 3.4.5.1. 参考: カテゴリフォルダの作成とGitリポジトリのクローンに関するコマンド
+##### 3.4.5.1. [任意] カテゴリフォルダの作成とGitリポジトリのクローンに関するコマンド
+
+クローンコマンドの横に`必要`と記載されている場合、そのリポジトリを後続の手順で使用でき、効率的に開発環境を構築できる。
+ただし、そのリポジトリを使用しない手順もあるため、実行しなくても問題はない。
 
 <details>
 <summary>詳細</summary>
@@ -346,16 +361,16 @@
     ```shell
     $ mkdir -p ~/workspace/Git/private/config/
     $ cd ~/workspace/Git/private/config/
-    $ git clone https://github.com/silverag-corgi/dev-env-for-windows.git
-    $ git clone https://github.com/silverag-corgi/vscode-settings.git
+    $ git clone https://github.com/silverag-corgi/dev-env-for-windows.git # 必要
+    $ git clone https://github.com/silverag-corgi/vscode-settings.git # 必要
     ```
 2. doc
     ```shell
     $ mkdir -p ~/workspace/Git/private/doc/
     $ cd ~/workspace/Git/private/doc/
     $ git clone https://github.com/silverag-corgi/curriculum-vitae.git
-    $ git clone https://github.com/silverag-corgi/github-markdown-css.git
-    $ git clone https://github.com/silverag-corgi/marp-theme-for-me.git
+    $ git clone https://github.com/silverag-corgi/github-markdown-css.git # 必要
+    $ git clone https://github.com/silverag-corgi/marp-theme-for-me.git # 必要
     $ git clone https://github.com/silverag-corgi/memo.git
     $ git clone https://github.com/silverag-corgi/memo-python.git
     ```
@@ -363,8 +378,8 @@
     ```shell
     $ mkdir -p ~/workspace/Git/private/git
     $ cd ~/workspace/Git/private/git
-    $ git clone https://github.com/silverag-corgi/git-commit-message-template.git
-    $ git clone https://github.com/silverag-corgi/git.git
+    $ git clone https://github.com/silverag-corgi/git-commit-message-template.git # 必要
+    $ git clone https://github.com/silverag-corgi/git.git # 必要
     ```
 4. github
     ```shell
@@ -398,20 +413,40 @@
 
 #### 3.4.6. Gitの設定(私用)
 
+実施することにより、普段使用するGit設定ファイル(私用)を設定することができる。
+なお、本リポジトリをクローンしている場合とクローンしていない場合で実施する手順が異なる。
+
+##### 3.4.6.1. 本リポジトリをクローンしている場合
+
 1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
-2. `Ubuntu 22.04`でGit設定ファイルを作成して編集するため、下記コマンドを実行する
+2. `Ubuntu 22.04`でGit設定ファイル(私用)のシンボリックリンクを作成するため、下記コマンドを実行する
+    - 設定ファイル: [`.gitconfig`](./config/Ubuntu/.gitconfig)
     ```shell
-    $ # Git設定ファイルを作成する
+    $ # Git設定ファイル(私用)のシンボリックリンクを作成する
+    $ ln -sf <Gitフォルダパス(私用)>/config/dev-env-for-windows/config/Ubuntu/.gitconfig ~/.gitconfig
+    $ # 当該ファイルを一覧表示する
+    $ ll ~/.gitconfig
+    ```
+
+##### 3.4.6.2. 本リポジトリをクローンしていない場合
+
+1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
+2. `Ubuntu 22.04`でGit設定ファイル(私用)を作成して編集するため、下記コマンドを実行する
+    ```shell
+    $ # Git設定ファイル(私用)を作成する
     $ touch ~/.gitconfig
     $ # 当該ファイルを開く
     $ code ~/.gitconfig
     ```
-3. `Ubuntu 22.04`でGit設定ファイルに下記内容を参考に追記する
+3. `Ubuntu 22.04`でGit設定ファイル(私用)に下記内容を参考に追記する
     ```conf
     [user]
         # Gitアカウント情報
         name = <ユーザ名>
         email = <メールアドレス>
+    [includeIf "gitdir:~/workspace/Git/business/"]
+        # Gitフォルダパス(仕事用)の場合、Git設定ファイル(仕事用)に切り替える
+        path = ~/.gitconfig-business
     [credential]
         # 認証情報を保存する (24時間キャッシュする)
         helper = cache --timeout=86400
@@ -422,38 +457,70 @@
         # 改行コードを自動的に変換する (チェックアウト=>元のまま,コミット=>Linuxの改行コードへの変換)
         autocrlf = input
     ```
-    - 普段使用している設定は[`.gitconfig`](./config/Ubuntu/.gitconfig)で管理している
-    - もし、追記する設定と管理している設定が同じ場合、後述の任意の手順を実施してもよい
-4. [任意] `Ubuntu 22.04`でGit設定ファイルのシンボリックリンクを作成するため、本リポジトリをクローンした後に下記コマンドを実行する
-    ```shell
-    $ # Git設定ファイルのシンボリックリンクを作成する
-    $ ln -sf <Gitフォルダパス>/config/dev-env-for-windows/config/Ubuntu/.gitconfig ~/.gitconfig
-    $ # 当該ファイルを一覧表示する
-    $ ll ~/.gitconfig
-    ```
 
 #### 3.4.7. [任意] Gitの設定(仕事用)
 
 実施することにより、仕事用フォルダ配下でGit設定ファイル(仕事用)に切り替えることができる。
+なお、本リポジトリをクローンしている場合とクローンしていない場合で実施する手順が異なる。
 
-1. `Ubuntu 22.04`でGit設定ファイル(仕事用)を作成して編集するため、下記コマンドを実行する
+##### 3.4.7.1. 本リポジトリをクローンしている場合
+
+1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
+2. `Ubuntu 22.04`でGit設定ファイル(仕事用)を作成して編集するため、下記コマンドを実行する
+    - 設定ファイル: [`.gitconfig-business.sample`](./config/Ubuntu/.gitconfig-business.sample)
     ```shell
+    $ # 親フォルダに移動する
+    $ cd <Gitフォルダパス>/config/dev-env-for-windows/config/Ubuntu/
     $ # Git設定ファイル(仕事用)を作成する
     $ cp .gitconfig-business.sample .gitconfig-business
-    $ # 当該ファイルを一覧表示する
-    $ ll .gitconfig-business
     $ # 当該ファイルを開く
     $ code .gitconfig-business
     ```
-2. `Ubuntu 22.04`でGit設定ファイル(仕事用)に下記内容を参考に追記する
+3. `Ubuntu 22.04`でGit設定ファイル(仕事用)に下記内容を参考に記入する
     ```conf
     [user]
         # Gitアカウント情報
         name = <ユーザ名>
         email = <メールアドレス>
     ```
+4. `Ubuntu 22.04`で記入内容が登録されているか確認するため、下記コマンドを実行する
+    ```shell
+    $ # Gitフォルダに移動する
+    $ cd <任意のGitフォルダ>
+    $ # ユーザ名を表示する
+    $ git config user.name
+    $ # ユーザ名を表示する
+    $ git config user.email
+    ```
 
-##### 3.4.7.1. 参考サイト
+##### 3.4.7.2. 本リポジトリをクローンしていない場合
+
+1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
+2. `Ubuntu 22.04`でGit設定ファイル(仕事用)を作成して編集するため、下記コマンドを実行する
+    ```shell
+    $ # Git設定ファイル(仕事用)を作成する
+    $ touch ~/.gitconfig-business
+    $ # 当該ファイルを開く
+    $ code ~/.gitconfig-business
+    ```
+3. `Ubuntu 22.04`でGit設定ファイル(仕事用)に下記内容を参考に追記する
+    ```conf
+    [user]
+        # Gitアカウント情報
+        name = <ユーザ名>
+        email = <メールアドレス>
+    ```
+4. `Ubuntu 22.04`で記入内容が登録されているか確認するため、下記コマンドを実行する
+    ```shell
+    $ # Gitフォルダに移動する
+    $ cd <任意のGitフォルダ>
+    $ # ユーザ名を表示する
+    $ git config user.name
+    $ # ユーザ名を表示する
+    $ git config user.email
+    ```
+
+##### 3.4.7.3. 参考サイト
 
 1. [.gitconfig おすすめ - Google 検索](https://www.google.com/search?q=.gitconfig+おすすめ)
     1. [Gitを使い始めたら一番最初にやりたい `git config`設定メモ](https://blog.katsubemakito.net/git/git-config-1st)
@@ -465,6 +532,21 @@
 #### 3.4.8. インタラクティブシェル設定ファイルへの設定の追加
 
 実施することにより、インタラクティブシェルを起動する時に実行されるコマンドを追加できる。
+なお、本リポジトリをクローンしている場合とクローンしていない場合で実施する手順が異なる。
+
+##### 3.4.8.1. 本リポジトリをクローンしている場合
+
+1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
+2. `Ubuntu 22.04`でインタラクティブシェル設定ファイルのシンボリックリンクを作成するため、下記コマンドを実行する
+    - 設定ファイル: [`.bashrc`](./config/Ubuntu/.bashrc)
+    ```shell
+    $ # インタラクティブシェル設定ファイルのシンボリックリンクを作成する
+    $ ln -sf <Gitフォルダパス(私用)>/config/dev-env-for-windows/config/Ubuntu/.bashrc ~/.bashrc
+    $ # 当該ファイルを一覧表示する
+    $ ll ~/.bashrc
+    ```
+
+##### 3.4.8.2. 本リポジトリをクローンしていない場合
 
 1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
 2. `Ubuntu 22.04`でインタラクティブシェル設定ファイルを開くため、下記コマンドを実行する
@@ -481,19 +563,25 @@
     export PROMPT_COMMAND='h -a;'                   # プロンプトが表示される前に実行するコマンド
     shopt -s histappend                             # シェルを終了する度にコマンド履歴をファイルに追記する
     ```
-    - 普段使用している設定は[`.bashrc`](./config/Ubuntu/.bashrc)で管理している
-    - もし、追記する設定と管理している設定が同じ場合、後述の任意の手順を実施してもよい
-4. [任意] `Ubuntu 22.04`でインタラクティブシェル設定ファイルのシンボリックリンクを作成するため、本リポジトリをクローンした後に下記コマンドを実行する
-    ```shell
-    $ # インタラクティブシェル設定ファイルのシンボリックリンクを作成する
-    $ ln -sf <Gitフォルダパス>/config/dev-env-for-windows/config/Ubuntu/.bashrc ~/.bashrc
-    $ # 当該ファイルを一覧表示する
-    $ ll ~/.bashrc
-    ```
 
 #### 3.4.9. エイリアス定義ファイルの作成
 
 実施することにより、コマンドのエイリアス(ショートカット)を作成できる。
+なお、本リポジトリをクローンしている場合とクローンしていない場合で実施する手順が異なる。
+
+##### 3.4.9.1. 本リポジトリをクローンしている場合
+
+1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
+2. [任意] `Ubuntu 22.04`でエイリアス定義ファイルのシンボリックリンクを作成するため、下記コマンドを実行する
+    - 設定ファイル: [`.bash_aliases`](./config/Ubuntu/.bash_aliases)
+    ```shell
+    $ # エイリアス定義ファイルのシンボリックリンクを作成する
+    $ ln -sf <Gitフォルダパス(私用)>/config/dev-env-for-windows/config/Ubuntu/.bash_aliases ~/.bash_aliases
+    $ # 当該ファイルを一覧表示する
+    $ ll ~/.bash_aliases
+    ```
+
+##### 3.4.9.2. 本リポジトリをクローンしていない場合
 
 1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
 2. `Ubuntu 22.04`でエイリアス定義ファイルを作成するため、下記コマンドを実行する
@@ -509,15 +597,6 @@
     alias c='clear'
     alias h='history'
     ```
-    - 普段使用している定義は[`.bash_aliases`](./config/Ubuntu/.bash_aliases)で管理している
-    - もし、追記する定義と管理している定義が同じ場合、後述の任意の手順を実施してもよい
-4. [任意] `Ubuntu 22.04`でエイリアス定義ファイルのシンボリックリンクを作成するため、本リポジトリをクローンした後に下記コマンドを実行する
-    ```shell
-    $ # エイリアス定義ファイルのシンボリックリンクを作成する
-    $ ln -sf <Gitフォルダパス>/config/dev-env-for-windows/config/Ubuntu/.bash_aliases ~/.bash_aliases
-    $ # 当該ファイルを一覧表示する
-    $ ll ~/.bash_aliases
-    ```
 
 #### 3.4.10. VSCodeのユーザ設定の同期
 
@@ -528,17 +607,19 @@
     1. `管理＞コマンド パレット`をクリックする(`Ctrl+Shift+P`)
     2. `Sync Settings: Open the repository settings`を入力してEnterを押下する
 3. `Windows 10`で`VSCode`で当該拡張機能の設定ファイルに下記内容を参考に追記する
-    ```yml
-    # selected profile, required
-    profile: main
+    - 本リポジトリをクローンしている場合
+      - 設定ファイル: [`settings.yml`](./config/Windows/settings.yml)
+    - 本リポジトリをクローンしていない場合
+      ```yml
+      # selected profile, required
+      profile: main
 
-    # sync on local file system
-    repository:
-      type: file
-      # path of the local directory to sync with, required
-      path: 'Z:/home/silverag/workspace/Git/private/config/vscode-settings'
-    ```
-    - 普段使用している設定は[`settings.yml`](./config/Windows/settings.yml)で管理している
+      # sync on local file system
+      repository:
+        type: file
+        # path of the local directory to sync with, required
+        path: 'Z:/home/silverag/workspace/Git/private/config/vscode-settings' # 事前にネットワークドライブを割り当ること
+      ```
 4. `Windows 10`で`VSCode`のユーザ設定をダウンロードするため、下記操作を実施する
     1. `管理＞コマンド パレット`をクリックする(`Ctrl+Shift+P`)
     2. `Sync Settings: Download (repository -> user)`を入力してEnterを押下する
