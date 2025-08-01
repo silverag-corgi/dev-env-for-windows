@@ -71,3 +71,14 @@ function change_prompt_format() {
         fi
     fi
 }
+
+# SSHの自動認証を有効化する
+export SSH_KEY_PATH=~/.ssh/id_rsa
+if [ ! -f "${SSH_KEY_PATH}" ]; then
+    # echo "ERR: 'id_rsa' is not found at '${SSH_KEY_PATH}'."
+    :
+else
+    # echo "DBG: 'id_rsa' is found at '${SSH_KEY_PATH}'."
+    /usr/bin/keychain -q --nogui ${SSH_KEY_PATH}
+    source ~/.keychain/${HOSTNAME}-sh
+fi
