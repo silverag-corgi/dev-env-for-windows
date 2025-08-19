@@ -37,12 +37,14 @@
       - [3.4.9.1. 本リポジトリをクローンしている場合](#3491-本リポジトリをクローンしている場合)
       - [3.4.9.2. 本リポジトリをクローンしていない場合](#3492-本リポジトリをクローンしていない場合)
     - [3.4.10. VSCodeのユーザ設定の同期](#3410-vscodeのユーザ設定の同期)
-    - [3.4.11. Dockerのインストール](#3411-dockerのインストール)
+    - [3.4.11. SSHの自動認証の有効化](#3411-sshの自動認証の有効化)
       - [3.4.11.1. 参考サイト](#34111-参考サイト)
-    - [3.4.12. Dockerの自動起動の設定](#3412-dockerの自動起動の設定)
+    - [3.4.12. Dockerのインストール](#3412-dockerのインストール)
       - [3.4.12.1. 参考サイト](#34121-参考サイト)
-    - [3.4.13. \[任意\] Chromiumのインストール](#3413-任意-chromiumのインストール)
+    - [3.4.13. Dockerの自動起動の設定](#3413-dockerの自動起動の設定)
       - [3.4.13.1. 参考サイト](#34131-参考サイト)
+    - [3.4.14. \[任意\] Chromiumのインストール](#3414-任意-chromiumのインストール)
+      - [3.4.14.1. 参考サイト](#34141-参考サイト)
 
 ## 1. 概要
 
@@ -624,7 +626,21 @@
     1. `管理＞コマンド パレット`をクリックする(`Ctrl+Shift+P`)
     2. `Sync Settings: Download (repository -> user)`を入力してEnterを押下する
 
-#### 3.4.11. Dockerのインストール
+#### 3.4.11. SSHの自動認証の有効化
+
+1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
+2. `Ubuntu 22.04`でKeychainパッケージをインストールするため、下記コマンドを実行する
+    ```shell
+    $ # Keychainパッケージをインストールする
+    $ sudo apt -y install keychain
+    ```
+
+##### 3.4.11.1. 参考サイト
+
+1. [ssh keychain - Google 検索](https://www.google.com/search?q=ssh+keychain)
+    1. [WSL2のUbuntuでkeychain経由でssh-agentを使う](https://zenn.dev/kaityo256/articles/ssh_agent_on_wsl)
+
+#### 3.4.12. Dockerのインストール
 
 1. `Windows 10`で`VSCode`を起動し、画面左側のリモートエクスプローラーに表示されている`Ubuntu-22.04`に接続する
 2. `Ubuntu 22.04`でAptリポジトリをセットアップするため、下記コマンドを実行する
@@ -714,7 +730,7 @@
     Hello from Docker!
     ```
 
-##### 3.4.11.1. 参考サイト
+##### 3.4.12.1. 参考サイト
 
 1. [docker cli ubuntu - Google 検索](https://www.google.com/search?q=docker+cli+ubuntu)
     1. [Install Docker Engine on Ubuntu | Docker Docs](https://docs.docker.com/engine/install/ubuntu/)
@@ -724,7 +740,7 @@
 3. [Error initializing network controller: error obtaining controller instance: unable to add return rule in DOCKER-ISOLATION-STAGE-1 chain: - Google 検索](https://www.google.com/search?q=Error+initializing+network+controller%3A+error+obtaining+controller+instance%3A+unable+to+add+return+rule+in+DOCKER-ISOLATION-STAGE-1+chain%3A)
     1. [WSL2のUbuntuを22.04にアップグレードしたらdockerが起動できなくなった - Qiita](https://qiita.com/tkc_tsuchiya/items/f7f4d502d8e2728f69c5)
 
-#### 3.4.12. Dockerの自動起動の設定
+#### 3.4.13. Dockerの自動起動の設定
 
 1. `Ubuntu 22.04`でWSL設定ファイル(ディストリビューション版)を編集するため、下記コマンドを実行する
     ```shell
@@ -775,12 +791,12 @@
     Hello from Docker!
     ```
 
-##### 3.4.12.1. 参考サイト
+##### 3.4.13.1. 参考サイト
 
 1. [wsl2 systemd docker - Google 検索](https://www.google.com/search?q=wsl2+systemd+docker)
     1. [WSL2起動時にdockerなどのサービスを同時に起動する(systemd利用) - Qiita](https://qiita.com/junkor-1011/items/60f92800e9a80e3f70da)
 
-#### 3.4.13. [任意] Chromiumのインストール
+#### 3.4.14. [任意] Chromiumのインストール
 
 実施することにより、Chromiumをインストールでき、`VSCode`の拡張機能である`Markdown PDF`でmdファイルをPDFに変換できる。
 
@@ -818,7 +834,7 @@
     </fontconfig>
     ```
 
-##### 3.4.13.1. 参考サイト
+##### 3.4.14.1. 参考サイト
 
 1. [markdown-pdf wsl2 export Error: Failed to launch the browser process No such file or directory - Google 検索](https://www.google.com/search?q=markdown-pdf+wsl2+export+Error%3A+Failed+to+launch+the+browser+process+No+such+file+or+directory)
     1. [Markdown PDFで Error: Failed to launch the browser process! が発生した際の解消方法 #VSCode - Qiita](https://qiita.com/I_s/items/5ba9a19d933598bc7f69)
