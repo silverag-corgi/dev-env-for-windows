@@ -39,7 +39,7 @@
     # メモ一覧を出力する
     memo = "!f() { cat ~/.gitconfig | sed -n '/\\[memo\\]/,/\\[end-memo\\]/p' | grep --color=auto -E '^\\s{4}#\\s.*|$'; }; f"
     # 直近のコミットログ15件を出力する (件数を指定する)
-    ll = log -n 15 --date=iso --decorate=short --pretty=format:'[%ad][%cd][%h]%Cgreen[%an]%Cred%d %Creset%s'
+    ll = log -n 15 --date=iso --decorate=short --abbrev=7 --pretty=format:'[%ad][%cd][%h]%Cgreen[%an]%Cred%d %Creset%s'
     # 直近の操作ログ15件を出力する (件数を指定する)
     rl = reflog -n 15 --date=iso
     # 直前のコミットを変更する (著者日付を維持して、コミッター日付を現在日時に変更する)
