@@ -357,7 +357,6 @@
       ```shell
       $ mkdir -p ~/workspace/Git/private/git
       $ cd ~/workspace/Git/private/git
-      $ git clone https://github.com/silverag-corgi/git-commit-message-template.git # 必須
       $ git clone https://github.com/silverag-corgi/git.git # 必須
       ```
     - github
